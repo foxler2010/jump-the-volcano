@@ -24,7 +24,7 @@ The game was created by my brother who may or may not have had some help from hi
 
 2. Download the source code into a folder you would like to put it in.
 
-3. Compile the top.drewssite.volcano package using the `javac` command in a terminal.
+3. Compile the `top.drewssite.volcano package` using the `javac` command in a terminal.
 
 4. Make sure your directories look like this: `/downloads/jump-the-volcano/bin/top/drewssite/volcano/Main.class`.
 
