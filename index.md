@@ -16,7 +16,7 @@ AND MUCH MORE!
 
 ### History
 
-The game was created by my brother who may or may not have had some help from his friends along the way. He introduced it to me as a fun thing to do when bored or as a conversation starter. "Jump the volcano, or dumpster dive?" he would say, narrating the game for me. I was learning Java some time later, and he did this to me during lunch. I quickly came up with the idea to code a "Jump The Volcano" game in Java to further my knowledge, and that's how the project came to be. There is still a lot to go before it is "production ready", but I believe anyone who enjoys following the small projects of ordinary people should stick around to see what this game becomes. I will undoubtedly update this page someday so stay tuned!
+The game was created by my brother who may or may not have had some help from his friends along the way. He introduced it to me as a fun thing to do when bored or as a conversation starter. "Jump the volcano, or dumpster dive?" he would say, narrating the game for me. I was learning Java some time later, and he did this to me during lunch, starting a game with that opening line. I quickly came up with the idea to code a "Jump The Volcano" game in Java to further my knowledge, and that's how the project came to be. There is still a lot to go before it is "production ready", but I believe anyone who enjoys following the small projects of ordinary people should stick around to see what this game becomes. I will undoubtedly update this page someday so stay tuned!
 
 ## How to play
 
