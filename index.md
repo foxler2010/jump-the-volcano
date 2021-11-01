@@ -1,5 +1,7 @@
 # Jump The Volcano
 
+A simple Java text adventure all about jumping over a volcano.
+
 ## What is this?
 
 So you've stumbled across the site for my project, eh? How about I tell you a bit about it...
