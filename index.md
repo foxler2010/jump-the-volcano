@@ -32,7 +32,7 @@ zero libraries (for portability and to help me learn the basics). And that's how
 
 ## How to play
 
-1. You need Java SE 11 JDK installed (Figure it out yourself if you haven't already. If you need suggestions for what binary to get, try adoptopenjdk.net) because I haven't gotten around to building a binary of this game for all platforms. Compile the source and put it somewhere you want to keep it. It does not require any sort of installation on your system, just needs to be put somewhere where you can run it.
+1. You need Java 11 installed because I haven't gotten around to building a binary of this game for all platforms. Compile the source and put it somewhere you want to keep it. It does not require any sort of installation on your system, just needs to be put somewhere where you can run it.
 
 2. You run the Main.class file you just compiled and start playing. The rules are self-explanatory. You get options every turn and based on what you choose certain things happen. There is a lot of randomization involved so every game is different.
 
