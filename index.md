@@ -10,11 +10,11 @@ Jump The Volcano is a text adventure written in Java that is based around a simp
 
 Feats currently included are:
 
-- Fighting monsters,
+- ~~Fighting monsters~~ (not done but there are some monsters included in the files, they are unused),
 
-- Creating cyborgs to be your pets,
+- ~~Creating cyborgs to be your pets~~ (not done),
 
-- Selling cans of beans for 5 cents a piece
+- ~~Selling cans of beans for 5 cents a piece~~ (also not done but you can still get beans)
 
 AND MUCH MORE!
 
