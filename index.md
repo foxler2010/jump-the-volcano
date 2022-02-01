@@ -16,7 +16,7 @@ Feats currently included are:
 
 - ~~Selling cans of beans for 5 cents a piece~~ (also not done but you can still get beans)
 
-AND MUCH MORE!
+AND MUCH MORE! (that is true, you can do a lot of things)
 
 ## History
 
