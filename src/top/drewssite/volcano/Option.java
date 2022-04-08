@@ -260,84 +260,86 @@ public enum Option {
         
     },
 
-    FILL_BOTTLE("Fill Bottle") {
 
-        @Override
-        public void opCode() {
+    // broken option
+    // FILL_BOTTLE("Fill Bottle") {
+
+    //     @Override
+    //     public void opCode() {
             
-            boolean multipleBottles; //if there is more than one bottle or not
-            ArrayList<Bottle> bottlesInInventory = new ArrayList<Bottle>(); //output of loop
-            Item currentItem; //used only inside loop
-            for (int i = 0; i < Data.player.sizeOfSubList(0); i++) { //loop counts how many bottles you have
+    //         boolean multipleBottles; //if there is more than one bottle or not
+    //         ArrayList<Bottle> bottlesInInventory = new ArrayList<Bottle>(); //output of loop
+    //         Item currentItem; //used only inside loop
+    //         for (int i = 0; i < Data.player.sizeOfSubList(0); i++) { //loop counts how many bottles you have
 
-                currentItem = Data.player.getItem(ItemType.JUNK, i);
+    //             currentItem = Data.player.getItem(ItemType.JUNK, i);
 
-                if (currentItem.getClass() == Bottle.class) {
+    //             if (currentItem.getClass() == Bottle.class) {
 
-                    bottlesInInventory.add((Bottle) currentItem); /* currentItem will always be assigned to a Bottle here,
-                                                                   * but we still need to cast because the
-                }                                                  * variable type is an Item. */
+    //                 bottlesInInventory.add((Bottle) currentItem); /* currentItem will always be assigned to a Bottle here,
+    //                                                                * but we still need to cast because the
+    //             }                                                  * variable type is an Item. */
 
-            }
+    //         }
 
-            //multipleBottles is set to true if the bottlesInInventory list has more than one item in it
-            if (bottlesInInventory.size() > 1) {
-                multipleBottles = true;
-            }
+    //         //multipleBottles is set to true if the bottlesInInventory list has more than one item in it
+    //         if (bottlesInInventory.size() > 1) {
+    //             multipleBottles = true;
+    //         }
 
-            System.out.println("You are currently able to fill your bottle with " + Data.nearLiquid.size() + " liquids near you");
-            System.out.println();
-            System.out.println("Here they are:");
+    //         System.out.println("You are currently able to fill your bottle with " + Data.nearLiquid.size() + " liquids near you");
+    //         System.out.println();
+    //         System.out.println("Here they are:");
 
-            for (int i = 0; i < Data.nearLiquid.size(); i++) {
+    //         for (int i = 0; i < Data.nearLiquid.size(); i++) {
 
-                System.out.println((i + 1) + ") " + Data.nearLiquid.get(i).getName());                    
+    //             System.out.println((i + 1) + ") " + Data.nearLiquid.get(i).getName());                    
 
-            }
+    //         }
 
-            int liquid = Data.intPrompt("Which liquid would you like to fill your bottle with? ");
+    //         int liquid = Data.intPrompt("Which liquid would you like to fill your bottle with? ");
 
-        }
+    //     }
 
-        @Override
-        public boolean isAvailable() {
+    //     @Override
+    //     public boolean isAvailable() {
             
-            //create var
-            boolean bottleInInventory = false;
-            //loop thru junk sublist
-            for (int i = 0; i < Data.player.sizeOfSubList(0); i++) {
+    //         //create var
+    //         boolean bottleInInventory = false;
+    //         //loop thru junk sublist
+    //         for (int i = 0; i < Data.player.sizeOfSubList(0); i++) {
 
-                //if current item is a Bottle, bottleInInventory = true; otherwise do nothing
-                if (Data.player.getItem(ItemType.JUNK, i).getClass() == Bottle.class) {
+    //             //if current item is a Bottle, bottleInInventory = true; otherwise do nothing
+    //             if (Data.player.getItem(ItemType.JUNK, i).getClass() == Bottle.class) {
 
-                    //set var to true
-                    bottleInInventory = true;
+    //                 //set var to true
+    //                 bottleInInventory = true;
 
-                }
+    //             }
 
-                //repeat loop until a Bottle is found (or not found)
-            }
+    //             //repeat loop until a Bottle is found (or not found)
+    //         }
 
-            //check if player is near a liquid AND if they have a Bottle in their inventory
-            //if they satisfy both conditions, return true
-            try {
+    //         //check if player is near a liquid AND if they have a Bottle in their inventory
+    //         //if they satisfy both conditions, return true
+    //         try {
 
-                if (Data.nearLiquid.get(0) != null && bottleInInventory) { //if index 0 has nothing in it, there must'nt be anything in the other indexes either.
+    //             if (Data.nearLiquid.get(0) != null && bottleInInventory) { //if index 0 has nothing in it, there must'nt be anything in the other indexes either.
     
-                    return true;
+    //                 return true;
     
-                }
+    //             }
 
-            } catch (IndexOutOfBoundsException e) { //if the player is not near any liquids this will happen during the above if statement.
+    //         } catch (IndexOutOfBoundsException e) { //if the player is not near any liquids this will happen during the above if statement.
 
-                return false;
+    //             return false;
 
-            }
+    //         }
 
-            return false; //if player is near a liquid and not in possesion of a Bottle
+    //         return false; //if player is near a liquid and not in possesion of a Bottle
 
-        }
-    },
+    //     }
+    // },
 
     QUIT("Exit the game") {
 
