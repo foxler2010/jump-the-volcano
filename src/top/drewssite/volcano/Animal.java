@@ -39,7 +39,27 @@ public abstract class Animal extends Item {
 		this.strength = strength;
 		this.health = 100;
 	}
-	
+
+
+	//stub method, not complete
+	/**
+	 * Allows the Animal calling the method to "eat" things.
+	 * The method grabs info from a given Food item and chamges the Animal's values accordingly.
+	 * A good Food item will provide the Animal with the amount of energy the Food would provide in real life.
+	 * To make sure this method affects the Animal's values correctly, make sure any Food items you create have the appropriate values.
+	 * @author foxler2010
+	 * @param food The food to eat
+	 * @return The amount of health recieved by eating the food.
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
+	public int eat(Food food) {
+
+
+		
+	}
+
 	/**
 	 * Unfinished method that will be used for comat mechanics.
 	 * @author foxler2010
