@@ -32,6 +32,14 @@ public class Bottle extends Junk {
 
     }
 
+    public Bottle(String name, double price, int fullness) {
+
+        super(name, price);
+
+        this.fullness = fullness;
+
+    }
+
     /**
      * Returns the fullness of the Bottle
      * @author foxler2010
