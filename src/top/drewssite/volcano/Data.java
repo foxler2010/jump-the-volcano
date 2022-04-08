@@ -251,7 +251,7 @@ class Data {
 
 	public static final Food grannySmithApple = new Food("Granny Smith Apple", 1.0, 20, false);
 
-	public static final Food honeycrispApple = new Food("Honeycrisp Apple", 2.0, 25, false, false);
+	public static final Food honeycrispApple = new Food("Honeycrisp Apple", 2.0, 25, false);
 
 	public static final Food sweetPotatoes = new Food("Sweet Potatoes", 5.0, 50, true);
 	
