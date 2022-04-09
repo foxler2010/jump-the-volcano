@@ -235,18 +235,7 @@ class Data {
 	//do not add to junkItems
 
 	//list of all junks
-	//junk items are added to this list automatically when they are constructed
-	public static final ArrayList<Junk> junkItems = new ArrayList<Junk>();
-
-	//add all junks to the junkItems list
-	public static void addJunksToList() {Data.junkItems.add(Data.oldCanOfBeans);
-
-		Data.junkItems.add(Data.oldCanOfBeans);
-		Data.junkItems.add(Data.moldySock);
-		Data.junkItems.add(Data.brokenMagnet);
-		Data.junkItems.add(Data.poopSock);
-
-	}
+	public static final Junk[] junkItems = {Data.oldCanOfBeans, Data.moldySock, Data.brokenMagnet, Data.poopSock};
 	
 	//bottles
 	//stored with the junk in inventory

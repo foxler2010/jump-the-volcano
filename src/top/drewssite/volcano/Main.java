@@ -37,9 +37,6 @@ class Main {
 	 */
 	public static void main(String args[]) {
 		
-		//I need to put this somewhere in the beginning of main(). It will be removed later when I make the new factory system.
-		Data.addJunksToList();
-		
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("Welcome to Jump The Volcano!");
