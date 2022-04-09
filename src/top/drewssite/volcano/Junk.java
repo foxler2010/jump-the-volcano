@@ -20,9 +20,5 @@ public class Junk extends Item {
 		super(name, ItemType.JUNK, false);
 		this.price = price;
 	}
-	public void postConstruction() {
-		
-		Data.junkItems.add(this); //add to list of all junks
 
-	}
 }

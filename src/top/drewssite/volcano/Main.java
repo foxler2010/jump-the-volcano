@@ -37,6 +37,9 @@ class Main {
 	 */
 	public static void main(String args[]) {
 		
+		//I need to put this somewhere in the beginning of main(). It will be removed later when I make the new factory system.
+		Data.addJunksToList();
+		
 		//WELCOME THE PLAYER TO THE GAME
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println("Welcome to Jump The Volcano!");
@@ -48,9 +51,6 @@ class Main {
 		System.out.println("Let's get started with the game!");
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println();
-
-		//SET firstTurn TO TRUE
-		//the next loop will be the first turn of the game, so this must be true.
 		
 		/*
 		 * MAIN LOOP STARTS HERE

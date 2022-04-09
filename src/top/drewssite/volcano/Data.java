@@ -223,20 +223,30 @@ class Data {
 	//junk
 	//index 0 in Inventory
 	public static final Junk oldCanOfBeans = new Junk("Old Can of Beans", .05);
-	static{Data.oldCanOfBeans.postConstruction();} //must be in static blocks since variables are static
 	
 	public static final Junk moldySock = new Junk("Moldy Sock", .05);
-	static{Data.moldySock.postConstruction();}
 	
 	public static final Junk brokenMagnet = new Junk("Broken Magnet", .10);
-	static{Data.brokenMagnet.postConstruction();}
 	
 	public static final Junk poopSock = new Junk("Poop Sock", 0);
-	static{Data.poopSock.postConstruction();}
 
 	//will be changed to new class later on
 	public static final Junk coolTrophy = new Junk("Cool Trophy", 100);
 	//do not add to junkItems
+
+	//list of all junks
+	//junk items are added to this list automatically when they are constructed
+	public static final ArrayList<Junk> junkItems = new ArrayList<Junk>();
+
+	//add all junks to the junkItems list
+	public static void addJunksToList() {Data.junkItems.add(Data.oldCanOfBeans);
+
+		Data.junkItems.add(Data.oldCanOfBeans);
+		Data.junkItems.add(Data.moldySock);
+		Data.junkItems.add(Data.brokenMagnet);
+		Data.junkItems.add(Data.poopSock);
+
+	}
 	
 	//bottles
 	//stored with the junk in inventory
@@ -244,9 +254,6 @@ class Data {
 
 	public static final Bottle freshBudLight = new Bottle("Fresh Bud Light", 10, 10, Data.budLight);
 
-	//list of all junks
-	//junk items are added to this list automatically when they are constructed
-	public static final ArrayList<Junk> junkItems = new ArrayList<Junk>();
 	
 	//yummy things
 	//index 1 in inventory
