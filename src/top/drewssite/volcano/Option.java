@@ -1,7 +1,5 @@
 package top.drewssite.volcano;
 
-import java.util.ArrayList;
-
 /**
  * Here is where all the options and their code is stored. I am putting option docs here as I don't have anywhere else to put them for now.
  * 
