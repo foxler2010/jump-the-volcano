@@ -49,14 +49,21 @@ public abstract class Animal extends Item {
 	 * To make sure this method affects the Animal's values correctly, make sure any Food items you create have the appropriate values.
 	 * @author foxler2010
 	 * @param food The food to eat
-	 * @return The amount of health recieved by eating the food.
 	 * @since v1.0
 	 * @see Player
 	 * @see Data
 	 */
-	public int eat(Food food) {
+	public void eat(Food food) {
 
+		int foodEnergy = food.getEnergy(); //get the amount of energy the food provides
 
+		Data.player.setHealth(Data.player.getHealth() + foodEnergy); //increase health by the amount of energy the food provides
+
+		int extraEnergy = 100 - Data.player.getHealth(); //max health is 100, so anything above is extra. calculate extra energy and sore it to a var
+
+		Data.player.setHealth(Data.player.getHealth() - extraEnergy); //subtract the extra emergy from the health so we stay at the max of 100 health
+
+		Data.player.setStrength(Data.player.getStrength() + extraEnergy); //extra energy increases the player's strength. anything that didn't go to healing the player goes to strengthening them.
 		
 	}
 
