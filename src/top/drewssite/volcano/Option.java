@@ -258,6 +258,7 @@ public enum Option {
         
     },
 
+<<<<<<< HEAD
     EAT_FOOD("Eat some food") {
 
         @Override
@@ -362,6 +363,47 @@ public enum Option {
 
     //     }
 
+=======
+    // FILL_BOTTLE("Fill Bottle") {
+
+    //     @Override
+    //     public void opCode() {
+            
+    //         boolean multipleBottles; //if there is more than one bottle or not
+    //         ArrayList<Bottle> bottlesInInventory = new ArrayList<Bottle>(); //output of loop
+    //         Item currentItem; //used only inside loop
+    //         for (int i = 0; i < Data.player.sizeOfSubList(0); i++) { //loop counts how many bottles you have
+
+    //             currentItem = Data.player.getItem(ItemType.JUNK, i);
+
+    //             if (currentItem.getClass() == Bottle.class) {
+
+    //                 bottlesInInventory.add((Bottle) currentItem); /* currentItem will always be assigned to a Bottle here,
+    //                                                                * but we still need to cast because the
+    //             }                                                  * variable type is an Item. */
+
+    //         }
+
+    //         //multipleBottles is set to true if the bottlesInInventory list has more than one item in it
+    //         if (bottlesInInventory.size() > 1) {
+    //             multipleBottles = true;
+    //         }
+
+    //         System.out.println("You are currently able to fill your bottle with " + Data.nearLiquid.size() + " liquids near you");
+    //         System.out.println();
+    //         System.out.println("Here they are:");
+
+    //         for (int i = 0; i < Data.nearLiquid.size(); i++) {
+
+    //             System.out.println((i + 1) + ") " + Data.nearLiquid.get(i).getName());                    
+
+    //         }
+
+    //         int liquid = Data.intPrompt("Which liquid would you like to fill your bottle with? ");
+
+    //     }
+
+>>>>>>> 104c9b963613763f6d75344adfe62e916ba8decd
     //     @Override
     //     public boolean isAvailable() {
             
