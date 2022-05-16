@@ -48,9 +48,6 @@ class Main {
 		System.out.println("Let's get started with the game!");
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println();
-
-		//SET firstTurn TO TRUE
-		//the next loop will be the first turn of the game, so this must be true.
 		
 		/*
 		 * MAIN LOOP STARTS HERE

@@ -260,6 +260,71 @@ public enum Option {
         
     },
 
+    EAT_FOOD("Eat some food") {
+
+        @Override
+        public void opCode() {
+
+            Data.player.foodVisitsUp(1);
+
+            int amountOfFood = Data.player.sizeOfSubList(1);
+
+            Food chosenFood = null;
+            
+            if (amountOfFood > 1) {
+    
+                System.out.println("You have " + amountOfFood + " pieces of food: ");
+    
+                for (int i = 0; i < amountOfFood; i++) {
+        
+                    System.out.println((i + 1) + ") " + Data.player.getItem(ItemType.FOOD, i).getName());
+        
+                }
+    
+                int playerInput = Data.intPrompt("Which food item would you like to eat? ");
+    
+                for (int i = 0; i < amountOfFood; i++) {
+    
+                    if (playerInput == i - 1) {
+
+                        chosenFood = (Food) Data.player.getItem(ItemType.FOOD, (i - 1));
+
+                    }
+    
+                }
+
+            } else {
+    
+                System.out.println("You have 1 " + Data.player.getItem(ItemType.FOOD, 0).getName());
+                System.out.println();
+                if (Data.yesNoPrompt("Would you like to eat it? [y/n] ", "y", "n")) {
+
+                    chosenFood = (Food) Data.player.getItem(ItemType.FOOD, 0);
+
+                }
+    
+            }
+
+            Data.player.eat(chosenFood);
+    
+        }
+
+        @Override
+        public boolean isAvailable() {
+            
+            if(Data.player.sizeOfSubList(1) > 0) {
+            
+                return true;
+            
+            }
+
+            return false;
+
+        }
+
+    },
+
+    // broken option
     // FILL_BOTTLE("Fill Bottle") {
 
     //     @Override

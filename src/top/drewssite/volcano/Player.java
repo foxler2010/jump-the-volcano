@@ -75,6 +75,14 @@ class Player extends Animal {
 	 * @see Data
 	 */
 	private int numOfArenaVisits = 0;
+
+	/**
+	 * Number of times the player has chosen the Eat Food option
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	private int numOfFoodsEaten = 0;
 	
 	/**
 	 * The constructor for the Player class
@@ -200,7 +208,7 @@ class Player extends Animal {
 	 */
 	public void volcanoVisitsUp(int visitsToAdd) {
 
-		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+		Data.player.setNumOfVolcanoVisits(Data.player.getNumOfVolcanoVisits() + visitsToAdd);
 
 	}
 
@@ -236,7 +244,7 @@ class Player extends Animal {
 	 */
 	public void dumpsterVisitsUp(int visitsToAdd) {
 
-		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+		Data.player.setNumOfDumpsterVisits(Data.player.getNumOfDumpsterVisits() + visitsToAdd);
 
 	}
 
@@ -272,7 +280,7 @@ class Player extends Animal {
 	 */
 	public void shopVisitsUp(int visitsToAdd) {
 
-		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+		Data.player.setNumOfShopVisits(Data.player.getNumOfShopVisits() + visitsToAdd);
 
 	}
 
@@ -308,7 +316,7 @@ class Player extends Animal {
 	 */
 	public void petStoreVisitsUp(int visitsToAdd) {
 
-		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+		Data.player.setNumOfPetStoreVisits(Data.player.getNumOfPetStoreVisits() + visitsToAdd);
 
 	}
 
@@ -344,7 +352,43 @@ class Player extends Animal {
 	 */
 	public void arenaVisitsUp(int visitsToAdd) {
 
-		Data.player.setLevel(Data.player.getLevel() + visitsToAdd);
+		Data.player.setNumOfArenaVisits(Data.player.getNumOfArenaVisits() + visitsToAdd);
+
+	}
+
+	/**
+	 * The getter for the numOfFoodsEaten variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
+	public int getNumOfFoodsEaten() {
+		return numOfFoodsEaten;
+	}
+
+	/**
+	 * The setter for the numOfFoodsEaten variable.
+	 * @author foxler2010
+	 * @param numOfFoodsEaten The new value of the numOfFoodsEaten variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
+	public void setNumOfFoodsEaten(int numOfFoodsEaten) {
+		this.numOfFoodsEaten = numOfFoodsEaten;
+	}
+
+	/**
+	 * Sets the numOfFoodsEaten variable to the current value + amountToAdd
+	 * @param amountToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void foodVisitsUp(int amountToAdd) {
+
+		Data.player.setNumOfFoodsEaten(Data.player.getNumOfFoodsEaten() + amountToAdd);
 
 	}
 	

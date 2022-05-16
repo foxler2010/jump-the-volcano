@@ -232,6 +232,10 @@ class Data {
 
 	//will be changed to new class later on
 	public static final Junk coolTrophy = new Junk("Cool Trophy", 100);
+	//do not add to junkItems
+
+	//list of all junks
+	public static final Junk[] junkItems = {Data.oldCanOfBeans, Data.moldySock, Data.brokenMagnet, Data.poopSock};
 	
 	//bottles
 	//stored with the junk in inventory
@@ -239,21 +243,17 @@ class Data {
 
 	public static final Bottle freshBudLight = new Bottle("Fresh Bud Light", 10, 10, Data.budLight);
 
-	//list of all junks
-	//items in this list are considered "inside the dumpster"
-	//you must add your item here for it to have a chance of coming out of the dumpster
-	public static final Junk[] junkItems = {oldCanOfBeans, dirtySodaBottle, moldySock, brokenMagnet, poopSock};
 	
 	//yummy things
 	//index 1 in inventory
 	
-	public static final Food veryDietSoda = new Food("Very Diet Soda", 5.0, 2, false);
+	public static final Food veryDietSoda = new Food("Very Diet Soda", 5.0, 5, false);
 
-	public static final Food grannySmithApple = new Food("Granny Smith Apple", 1.0, 20, false);
+	public static final Food grannySmithApple = new Food("Granny Smith Apple", 1.0, 10, false); //ewww that apple is baaad, you only get 10 energy from it
 
-	public static final Food honeycrispApple = new Food("Honeycrisp Apple", 2.0, 25, false, false);
+	public static final Food honeycrispApple = new Food("Honeycrisp Apple", 2.0, 25, false); //honeycrisp is better than a granny smith
 
-	public static final Food sweetPotatoes = new Food("Sweet Potatoes", 5.0, 50, true);
+	public static final Food sweetPotatoes = new Food("Sweet Potatoes", 5.0, 50, true); //i don't actually like the taste of sweet potatoes, but they are very nutritious, so they get a lot of energy
 	
 	//monsters!
 	//index 2 in Inventory

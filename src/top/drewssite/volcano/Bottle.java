@@ -14,7 +14,7 @@ public class Bottle extends Junk {
     private Liquid contents;
 
     /**
-     * The constructor for the Bottle class.
+     * The constructor for the Bottle class. The fullness and contents vars may be omitted if you wish to make the bottle empty; they will be set to 0 and null, respectively.
      * @author foxler2010
      * @param name  The name of the Bottle
      * @param price The price of the Bottle
@@ -29,6 +29,24 @@ public class Bottle extends Junk {
 
         this.fullness = fullness;
         this.contents = contents;
+
+    }
+
+    /**
+     * The constructor for the Bottle class. The fullness and contents vars may be omitted if you wish to make the bottle empty; they will be set to 0 and null, respectively.
+     * @param name The name of the Bottle
+     * @param price The price of the Bottle
+     * @author foxler2010
+     * @since v1.0
+     * @see Junk
+     */
+    public Bottle(String name, double price) {
+
+        super(name, price);
+
+        //empty bottle
+        this.fullness = 0;
+        this.contents = null;
 
     }
 
