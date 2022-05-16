@@ -59,16 +59,12 @@ class Main {
 		 * PHASE 3: Carry out the action. changing the player's instance vars along the way. This is the only step where the vars are changed.
 		 * PHASE 4: Repeat from step 1, starting a new turn
 		 */
-		
-		//initialize boolean to track whether we are continuing the loop or not
-		//also make a turn counter because it's useful
-		Data.turns = 0;
 
 		//the loop begins
 		while (Data.continuingGame) {
 			//PHASE 1
 			//reported no matter what
-			System.out.println("Turn: \u001b[33m" + Data.turns + "\u001b[0m");
+			System.out.println("Turn: \u001b[33m" + Data.lifeTurns + "\u001b[0m");
 			System.out.println("Your level is \u001b[32m" + Data.player.getLevel() + "\u001b[0m...\n...and you have $\u001b[31m" + Data.player.getMoney() + "\u001b[0m in your wallet.");
 			System.out.println();
 			
@@ -126,9 +122,38 @@ class Main {
 			//this loop displays the options
 			for (int i = 0; i < availableOptions.size(); i++) {
 				
-				//print the option to the screen. and do some cool maths so the numbers are always starting at 1 :)
-				System.out.println("  " + (i + 1) + ") " + availableOptions.get(i).getName());
-				
+				//print the option to the screen. This code figures out whether the option gets the (NEW!) tag or not, so I don't have to create duplicate options like I used to.
+				int currentOptionVisits;
+				switch (availableOptions.get(i)) {
+					case JUMP_THE_VOLCANO: currentOptionVisits = Data.player.getNumOfVolcanoVisits(); break;
+					case DUMPSTER_DIVE: currentOptionVisits = Data.player.getNumOfDumpsterVisits(); break;
+					case SHOP: currentOptionVisits = Data.player.getNumOfShopVisits(); break;
+					case ARENA: currentOptionVisits = Data.player.getNumOfArenaVisits(); break;
+					case PET_STORE: currentOptionVisits = Data.player.getNumOfPetStoreVisits(); break;
+					case EAT_FOOD: currentOptionVisits = Data.player.getNumOfFoodsEaten(); break;
+					case QUIT: currentOptionVisits = Data.player.getNumOfQuittings(); break;
+					default: currentOptionVisits = 0;
+				}
+
+				if (Data.saveTurns == 0) { //don't put the (NEW!) tag on anything on the first turn.
+
+					System.out.println("  " + (i + 1) + ") " + availableOptions.get(i).getName());
+					Data.startingOptions.add(availableOptions.get(i)); //save the options displayed on the first turn so we know they don't get the (NEW!) tag ever.
+
+				} else if (Data.startingOptions.contains(availableOptions.get(i))) { //the options displayed on the first turn never get the (NEW!) tag even if they've never been visited.
+
+					System.out.println("  " + (i + 1) + ") " + availableOptions.get(i).getName());
+
+				} else if (currentOptionVisits == 0) { //only options introduced after the first turn get the (NEW!) tag, and only until the player visits them for the first time.
+					
+					System.out.println("  " + (i + 1) + ") (NEW!) " + availableOptions.get(i).getName());
+					
+				} else { //this condition will be used the majority of the time, for options introduced after the first turn that have been visited at least once
+					
+					System.out.println("  " + (i + 1) + ") " + availableOptions.get(i).getName());
+
+				}
+					
 			}
 			
 			//newline for readability
@@ -204,6 +229,9 @@ class Main {
 
 					}
 
+					//reset lifeTurns to 0
+					Data.lifeTurns = 0;
+
 				} else {
 					System.out.println("Too bad. I thought it was a good deal, but I guess it is your call...");
 					System.out.println("Have fun dying.");
@@ -220,8 +248,9 @@ class Main {
 				System.out.println();
 			}//end turnmarker if
 			
-			//Increase turn counter by one at end of turn
-			Data.turns++;
+			//Increase turn counters by one at end of turn
+			Data.saveTurns++;
+			Data.lifeTurns++;
 			
 		}//end main loop	
 		

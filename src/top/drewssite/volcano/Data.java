@@ -187,12 +187,20 @@ class Data {
 	public static Player player = new Player("Player", 10, 0, 0, Data.startingInventory);
 
 	/**
-	 * The number of turns the player has taken. Does not reset after the player dies.
+	 * The number of turns the player has taken in total throughout the whole save. Does not reset after the player dies.
 	 * @author foxler2010
 	 * @since v1.0
 	 * @see Data
 	 */
-	public static int turns;
+	public static int saveTurns = 0;
+
+	/**
+	 * The number of turns the player has taken in thier current life. This resets after the player dies.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static int lifeTurns = 0;
 
 	/**
 	 * When this is true, the main loop continues to run. If the player choosesthe "Quit" option and responds yes,
@@ -217,6 +225,8 @@ class Data {
 		//ex. if the player starts by a pond, water must be added to the list here.
 		nearLiquid.add(Data.water);
 	}
+
+	public static ArrayList<Option> startingOptions = new ArrayList<Option>();
 
 	//option code to go here
 

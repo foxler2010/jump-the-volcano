@@ -85,6 +85,14 @@ class Player extends Animal {
 	private int numOfFoodsEaten = 0;
 	
 	/**
+	 * Number of times the player has quit the game. This stat is not displayed if the value is zero.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	private int numOfQuittings = 0;
+
+	/**
 	 * The constructor for the Player class
 	 * @author foxler2010
 	 * @see Player
@@ -389,6 +397,42 @@ class Player extends Animal {
 	public void foodVisitsUp(int amountToAdd) {
 
 		Data.player.setNumOfFoodsEaten(Data.player.getNumOfFoodsEaten() + amountToAdd);
+
+	}
+
+	/**
+	 * The getter for the numOfQuittings variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
+	public int getNumOfQuittings() {
+		return numOfQuittings;
+	}	
+
+	/**
+	 * The setter for the numOfQuittings variable.
+	 * @author foxler2010
+	 * @param numOfQuittings The new value of the numOfQuittings variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */
+	public void setNumOfQuittings(int numOfQuittings) {
+		this.numOfQuittings = numOfQuittings;
+	}
+
+	/**
+	 * Sets the numOfQuittings variable to the current value + quitsToAdd
+	 * @param quitsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */
+	public void quittingsUp(int quitsToAdd) {
+
+		Data.player.setNumOfQuittings(Data.player.getNumOfQuittings() + quitsToAdd);
 
 	}
 	

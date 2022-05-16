@@ -146,29 +146,7 @@ public enum Option {
         
         @Override
         public boolean isAvailable() {
-            if ((Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1) && Data.player.getNumOfShopVisits() > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    },
-    
-    SHOP_NEW("(NEW!) Go to the Shop") {
-
-        @Override
-        public void opCode() {
-            
-            //increase # of visits by 1
-            Data.player.shopVisitsUp(1);
-
-            System.out.println("You visit the shop and sell nothing because you are a hoarder.");
-
-        }
-
-        @Override
-        public boolean isAvailable() {
-            if ((Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1) && Data.player.getNumOfShopVisits() == 0) {
+            if (Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1) {
                 return true;
             } else {
                 return false;
@@ -188,28 +166,7 @@ public enum Option {
 
         @Override
         public boolean isAvailable() {
-            if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        
-    },
-
-    PET_STORE_NEW("(NEW!) Go to the Pet Store") {
-
-        @Override
-        public void opCode() {
-            
-            //increase # of visits by 1
-            Data.player.petStoreVisitsUp(1);
-
-        }
-
-        @Override
-        public boolean isAvailable() {
-            if (Data.player.getMoney() >= 500 && Data.player.getNumOfPetStoreVisits() == 0) {
+            if (Data.player.getMoney() >= 500) {
                 return true;
             } else {
                 return false;
@@ -230,28 +187,7 @@ public enum Option {
 
         @Override
         public boolean isAvailable() {
-            if (Data.turns > 50) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        
-    },
-
-    ARENA_NEW("(NEW!) Visit the Arena") {
-
-        @Override
-        public void opCode() {
-            
-            //increase # of visits by 1
-            Data.player.arenaVisitsUp(1);
-            
-        }
-
-        @Override
-        public boolean isAvailable() {
-            if (Data.turns == 50) {
+            if (Data.saveTurns >= 50) {
                 return true;
             } else {
                 return false;
@@ -408,6 +344,8 @@ public enum Option {
 
         @Override
         public void opCode() {
+
+            Data.player.quittingsUp(1);
             
             Data.continuingGame = Data.yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
             
