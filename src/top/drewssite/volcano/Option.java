@@ -1,6 +1,6 @@
 package top.drewssite.volcano;
 
-import java.util.ArrayList;
+import java.util.ArrayList; //used in FILL_BOTTLE option, which is currently commented
 
 /**
  * Here is where all the options and their code is stored. I am putting option docs here as I don't have anywhere else to put them for now.
