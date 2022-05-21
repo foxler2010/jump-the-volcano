@@ -10,6 +10,5 @@ public enum ItemType {
 	KIT,
 	WEAPON,
 	JUNK, //added
-	FOOD,
-	OTHER
+	FOOD //added
 }

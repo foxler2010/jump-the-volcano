@@ -31,7 +31,6 @@ class Inventory {
         inventory.add(new ArrayList<Item>());
         inventory.add(new ArrayList<Item>());
         inventory.add(new ArrayList<Item>());
-        inventory.add(new ArrayList<Item>());
     }
 
     /**
@@ -63,8 +62,6 @@ class Inventory {
             case MONSTER:
             inventory.get(5).add(item);
             break;
-            case OTHER:
-            inventory.get(6).add(item);
         }
     }
 
@@ -96,8 +93,6 @@ class Inventory {
             return requestedItem = inventory.get(4).get(index);
             case MONSTER:
             return requestedItem = inventory.get(5).get(index);
-            case OTHER:
-            return requestedItem = inventory.get(6).get(index);
             //because it thinks there are more enum states
             default:
             return requestedItem;
@@ -134,8 +129,6 @@ class Inventory {
             case MONSTER:
             inventory.get(5).remove(index);
             break;
-            case OTHER:
-            inventory.get(6).remove(index);
         }
     }
 
@@ -169,8 +162,6 @@ class Inventory {
             case 5:
             inventory.get(5).remove(index);
             break;
-            case 6:
-            inventory.get(6).remove(index);
         }
     }
 
@@ -204,8 +195,6 @@ class Inventory {
             case MONSTER:
             inventory.get(5).remove(item);
             break;
-            case OTHER:
-            inventory.get(6).remove(item);
         }
     }
 
@@ -224,7 +213,7 @@ class Inventory {
 
         //for every sub-list, check for the item.
         //if true, return the result immediately so that the boolean won't get messed with by the other if statements.
-        for (int i = 0; i <=6; i++) {
+        for (int i = 0; i <=5; i++) {
             if (inventory.get(0).contains(item)) {
                 itemIsPresent = true;
                 return itemIsPresent;
@@ -262,8 +251,6 @@ class Inventory {
             return inventory.get(4).indexOf(item);
             case MONSTER:
             return inventory.get(5).indexOf(item);
-            case OTHER:
-            return inventory.get(6).indexOf(item);
             //because it thinks there are more enum states
             default:
             return -1;
@@ -292,7 +279,7 @@ class Inventory {
             //}
         //}
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
 
             //each iteration is a different sub-list
 
@@ -395,7 +382,7 @@ class Inventory {
      */
     int sizeOfInventory() {
         int size = inventory.get(0).size();
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 5; i++) {
             size = size + inventory.get(i).size();
         }
         return size;
