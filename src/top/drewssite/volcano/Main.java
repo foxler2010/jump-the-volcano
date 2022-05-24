@@ -1,15 +1,4 @@
 /*
- * COMMENTING FORMAT!
- * 
- * ALL CAPS = new section of code
- * 
- * anything else = notes, small bits i wanted to highlight,
- * 
- * other stuff that would otherwise not make sense w/o a comment, etc.
- */
-
-
-/*
  * ANSI color codes for me to use when coding
  * Red:   \u001b[31m
  * Green: \u001b[32m
