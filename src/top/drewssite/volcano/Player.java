@@ -104,7 +104,7 @@ class Player extends Animal {
 	 * @param startingInventory	This is what the player's inventory will contain when they start the game.
 	 */
 	public Player(String name, int strength, int level, double money, Inventory startingInventory) {
-		super(name, ItemType.OTHER, strength, false);
+		super(name, ItemType.PLAYER, strength, false);
 		this.level = level;
 		this.money = money;
 		this.inventory = startingInventory;
