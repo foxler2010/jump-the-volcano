@@ -224,6 +224,7 @@ class InventoryV3 {
                         this.inventory.get(this.types.indexOf(item.getType())).add(item);
 
                     } catch (IndexOutOfBoundsException e) { //if we can't find it
+
                         try {
 
                             this.createSublist(item.getType()); //create new one
@@ -231,7 +232,7 @@ class InventoryV3 {
 
                         } catch (SublistAlreadyCreatedException f) { //this code will never get called but we need it anyway
 
-                            this.inventory.get(this.types.indexOf(item.getType())).add(item);
+                            f.printStackTrace();
 
                         }
 
@@ -252,6 +253,35 @@ class InventoryV3 {
         } else { //step 3, throw exception
 
             throw new InventoryFullException();
+
+        }
+
+    }
+
+    void removeItem(Item item) throws ItemNotInInventoryException {
+
+        try {
+
+            inventory.get(types.indexOf(item.getType())).remove(item);
+
+        } catch (IndexOutOfBoundsException e) { //if the item is not in the inventory
+
+            throw new ItemNotInInventoryException(item);
+
+        }
+
+        //check to see if the sublist has any items in it
+        if (this.amountOf(item.getType()) == 0) {
+
+            try {
+
+                this.deleteSublist(item.getType(), false); //delete it if there are no items
+
+            } catch (SublistNotEmptyException e) { //never going to happen
+
+                e.printStackTrace();
+
+            }
 
         }
 
