@@ -293,6 +293,8 @@ class Data {
 
 	public static final Pet gordonRamseyPlushToy = new Pet("Gordon Ramsey Plush Toy", 0);
 
+	public static final Pet daBaby = new Pet("DaBaby", 10000000);
+
 	//liquids
 	//can't store in inventory without a Bottle, so there is no index number
 	public static final Liquid water = new Liquid("Water", 0, 0, 10, true);
