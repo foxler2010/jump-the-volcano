@@ -160,7 +160,7 @@ class InventoryV3 {
      * @since v1.0
      * @see InventoryV3
      */
-    int size() {
+    int totalItems() {
 
         int size = 0; 
 
@@ -182,7 +182,7 @@ class InventoryV3 {
 
     }
 
-    void add(Item item) throws InventoryFullException, InventoryItemLimitReachedException, InventorySublistFullException {
+    void addItem(Item item) throws InventoryFullException, InventoryItemLimitReachedException, InventorySublistFullException {
 
         //step 1, set some variables
         boolean maxItemsLimit = true;
@@ -211,7 +211,7 @@ class InventoryV3 {
         }
 
         //step 2, check if the the item can be added to the inventory
-        if ((this.size() < this.maxTotalItems) || (this.maxTotalItems == -1)) {
+        if ((this.totalItems() < this.maxTotalItems) || (this.maxTotalItems == -1)) {
 
             if ((this.amountOf(item.getType()) < this.maxItemsOfTypeAmount.get(this.maxItemsOfTypeID.indexOf(item.getType()))) || !maxItemsOfTypeLimit) {
 
@@ -285,6 +285,122 @@ class InventoryV3 {
 
         }
 
+    }
+
+    //Copied from Inventory class
+    /**
+     * Return a String containing a comma separated list of all the items in the inventory, using the items' fancy names.
+     * The output of this method is the same format as the old inventory system, and if you have a lot of items, the list can be very long.
+     * It is reccomended to use fancyToString() instead of this method.
+     * @author foxler2010
+     * @see InventoryV3
+     * @since v1.0
+     * @return A list of everything in the inventory.
+     */
+    public String toString() {
+        
+        //initialize the finalString variable
+        String finalString = "";
+
+        //STRUCTURE:
+        //loop thru the sub-lists {
+            //loop thru each item {
+                //add item to finalString
+            //}
+        //}
+
+        for (int i = 0; i < this.inventory.size(); i++) {
+
+            //each iteration is a different sub-list
+
+            for (int j = 0; j < inventory.get(i).size(); j++) {
+                
+                //each iteration is a different item
+
+                //fetch the item we are working with, and add its "fancy name" to finalString
+                finalString = finalString + inventory.get(i).get(j).getName();
+
+                //add a comma and space, so the next item isn't "hugging" the first
+                finalString = finalString + ", ";
+
+            }
+
+        }
+
+        //remove comma + space at the end
+        //this singular line took about ~1 month of effort to get right
+        finalString = finalString.substring(0, finalString.length() - 2);
+
+        return finalString;
+
+    }
+
+    //Also copied from Inventory class, but more heavily modified
+    /**
+     * Return a String containing a comma separated list of all the items in the inventory, using the items' fancy names.
+     * Multiple items of the same instance are grouped so that they show like this: "Old Can Of Beans x10".
+     * This is the method currently used to display the inventory every turn.
+     * @author foxler2010
+     * @see InventoryV3
+     * @since v1.0
+     * @return A list of everything in the inventory, with items of the same instance grouped together.
+     */
+    String fancyToString() {
+
+        //initialize the finalString variable
+        String finalString = "";
+
+        //loop thru sub-lists
+        for (int i = 0; i < this.inventory.size(); i++) {
+
+            //initialize alreadyCounted variable
+            ArrayList<Item> alreadyCounted = new ArrayList<Item>();
+
+            //loop thru items in sub-lists
+            for (int j = 0; j < this.inventory.get(i).size(); j++) {
+
+                //only run the code if the item could not be found in this list
+                if (alreadyCounted.indexOf(this.inventory.get(i).get(j)) == -1) {
+                    
+                    //initialize the amountOfItem variable
+                    int amountOfItem = 0;
+
+                    //count how many instances of the item are in the sub-list
+                    //this includes the one we are looping through
+                    for (int k = 0; k < this.inventory.get(i).size(); k++) {
+
+                        //check if the item with index k is the same as the item we are counting
+                        if (this.inventory.get(i).get(k) == this.inventory.get(i).get(j)) {
+                            amountOfItem++;
+                        }
+
+                    }
+
+                    //compile the info we've gathered into a string and add it to finalString
+                    //if amountOfItem = 1, exclude the "x1" that would normally be included.
+                    if (amountOfItem == 1) {
+                        finalString = finalString + inventory.get(i).get(j).getName() + ", ";
+                    } else {
+                        finalString = finalString + inventory.get(i).get(j).getName() + " x" + amountOfItem + ", ";
+                    }
+                
+                    //add the item to the alreadyCounted list, to make sure we don't count the item again
+                    alreadyCounted.add(inventory.get(i).get(j));
+
+                }
+                
+            }
+                
+        }
+
+        //remove the comma + space at the end of finalString (since there is no item after it; correct grammar y'know)
+        //this singular line took about ~1 month of effort to get right
+        //copied from above non-fancy method
+        finalString = finalString.substring(0, finalString.length() - 2);
+
+        //return final result
+        return finalString;
+        
     }
 
 }
