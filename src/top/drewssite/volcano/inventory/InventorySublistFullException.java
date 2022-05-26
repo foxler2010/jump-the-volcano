@@ -1,4 +1,6 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.inventory;
+
+import top.drewssite.volcano.items.ItemType;
 
 /**
  * This exception is thrown when you try to add an item to an inventory, but the max umber of items has been reahed and no more can be added.

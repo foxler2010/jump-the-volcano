@@ -1,6 +1,11 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.core;
 
 import java.util.ArrayList; //used in FILL_BOTTLE option, which is currently commented
+
+import top.drewssite.volcano.data.Data;
+import top.drewssite.volcano.items.Food;
+import top.drewssite.volcano.items.ItemType;
+import top.drewssite.volcano.items.Junk;
 
 /**
  * Here is where all the options and their code is stored. I am putting option docs here as I don't have anywhere else to put them for now.

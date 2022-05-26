@@ -6,9 +6,11 @@
  * Reset: \u001b[0m
  */
 
-package top.drewssite.volcano;
+package top.drewssite.volcano.core;
 
 import java.util.ArrayList;
+
+import top.drewssite.volcano.data.Data;
 
 /**
  * This is where the main method is located. When the program starts, the methods in here are executed.
@@ -17,7 +19,7 @@ import java.util.ArrayList;
  * @see Data
  * @see Data
  */
-class Main {
+public class Main {
 	
 	/**
 	 * This is the main method. When the program is executed, this is the method that is called.

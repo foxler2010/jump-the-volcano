@@ -1,4 +1,6 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.inventory;
+
+import top.drewssite.volcano.items.ItemType;
 
 /**
  * This exception is thrown when you try to create a sublist in the player's inventory for a type that already has a sublist dedicated to it

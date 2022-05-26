@@ -1,9 +1,20 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.data;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+
+import top.drewssite.volcano.core.Main;
+import top.drewssite.volcano.core.Option;
+import top.drewssite.volcano.inventory.Inventory;
+import top.drewssite.volcano.items.Bottle;
+import top.drewssite.volcano.items.Food;
+import top.drewssite.volcano.items.Junk;
+import top.drewssite.volcano.items.Liquid;
+import top.drewssite.volcano.items.Monster;
+import top.drewssite.volcano.items.Pet;
+import top.drewssite.volcano.items.Player;
 
 /**
  * This is where all the static stuff is declared and initialized.
@@ -12,7 +23,7 @@ import java.util.Scanner;
  * @since v1.0
  * @see Main
  */
-class Data {
+public class Data {
 	
 	/**
 	 * This is the scanner that gets input from the player.

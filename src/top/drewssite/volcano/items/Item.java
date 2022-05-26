@@ -1,4 +1,4 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
 
 public abstract class Item {
 	

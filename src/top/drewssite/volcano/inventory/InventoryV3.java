@@ -1,6 +1,10 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.inventory;
 
 import java.util.ArrayList;
+
+import top.drewssite.volcano.items.Item;
+import top.drewssite.volcano.items.ItemType;
+import top.drewssite.volcano.items.Player;
 
 /** The third iteration
  * @author foxler2010

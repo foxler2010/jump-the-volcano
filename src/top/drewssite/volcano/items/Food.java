@@ -1,4 +1,4 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
 
 /**
  * This class implements the "Food" itemType, allowing the player to eat things. It extends Junk, because Junk already has price implemented.

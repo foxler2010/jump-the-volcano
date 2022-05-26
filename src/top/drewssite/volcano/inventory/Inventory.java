@@ -1,5 +1,9 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.inventory;
 import java.util.ArrayList;
+
+import top.drewssite.volcano.items.Item;
+import top.drewssite.volcano.items.ItemType;
+import top.drewssite.volcano.items.Player;
 
 /**
  * Unlike a traditional ArrayList, this one sorts everything into sub-lists.
@@ -9,7 +13,7 @@ import java.util.ArrayList;
  * @since v1.0
  * @see Player
  */
-class Inventory {
+public class Inventory {
     
     //list of lists
     private ArrayList<ArrayList<Item>> inventory;
@@ -21,7 +25,7 @@ class Inventory {
      * @see Inventory
      * @since v1.0
      */
-    Inventory() {
+    public Inventory() {
         //initialize big list
         inventory = new ArrayList<ArrayList<Item>>();
         //initialize the sub-lists inside of big list

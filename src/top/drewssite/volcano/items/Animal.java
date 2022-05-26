@@ -1,4 +1,6 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
+
+import top.drewssite.volcano.data.Data;
 
 //it's an item that is alive
 //it also has some extra alive-stuff-only attributes (health, strength, etc)

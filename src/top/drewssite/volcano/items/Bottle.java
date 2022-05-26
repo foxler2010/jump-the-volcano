@@ -1,4 +1,4 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
 
 /**
  * This class implements Bottles, a way to store Liquids.

@@ -1,4 +1,4 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
 
 /**
  * This class provides the game with liquids,

@@ -1,7 +1,7 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
 
 //friendly animal
-class Pet extends Animal {
+public class Pet extends Animal {
 	
 	public Pet(String name, int strength) {
 		//same as animal, but set type to itemType.PET instead

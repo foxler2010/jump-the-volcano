@@ -1,4 +1,7 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
+
+import top.drewssite.volcano.data.Data;
+import top.drewssite.volcano.inventory.Inventory;
 
 /**
  *	It's YOU!
@@ -10,7 +13,7 @@ package top.drewssite.volcano;
  *	@see Item
  *	@since	v1.0
  */
-class Player extends Animal {
+public class Player extends Animal {
 	
 	/**
 	 * The experience level of the player. Can be used for a variety of things.

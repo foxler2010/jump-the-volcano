@@ -1,4 +1,4 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
 
 //this is one way to find out what an item 'is'.
 //combined with the inheritance structure of items, categorization should be very easy

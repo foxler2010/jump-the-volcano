@@ -1,4 +1,4 @@
-package top.drewssite.volcano;
+package top.drewssite.volcano.items;
 
 /**
  * This exception is thrown when you try to make an uncookable food cooked.
