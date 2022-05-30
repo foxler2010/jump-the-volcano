@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <items>
+        <item>
+            <type>JUNK</type>
+            <name>oldCanOfBeans</name>
+            <displayName>Old Can of Beans</displayName>
+            <price>.05</price>
+        </item>
+        <item>
+            <type>JUNK</type>
+            <name>moldySock</name>
+            <displayName>Moldy Sock</displayName>
+            <price>.05</price>
+        </item>
+        <item>
+            <type>JUNK</type>
+            <name>brokenMagnet</name>
+            <displayName>Broken Magnet</displayName>
+            <price>.10</price>
+        </item>
+        <item>
+            <type>JUNK</type>
+            <name>poopSock</name>
+            <displayName>Poop Sock</displayName>
+            <price>0</price>
+        </item>
+        <item>
+            <type>TROPHY</type>
+            <name>coolTrophy</name>
+            <displayName>Cool Trophy</displayName>
+            <price>100</price>
+        </item>
+        <item>
+            <type>BOTTLE</type>
+            <name>dirtySodaBottle</name>
+            <displayName>Dirty Soda Bottle</displayName>
+            <price>.05</price>
+            <fullness>0</fullness>
+            <contents>null</contents>
+        </item>
+        <item>
+            <type>BOTTLE</type>
+            <name>freshBudLight</name>
+            <displayName>FreshBid Light</displayName>
+            <price>10</price>
+            <fullness>10</fullness>
+            <contents>budLight</contents>
+        </item>
+        <item>
+            <type>FOOD</type>
+            <name>veryDietSoda</name>
+            <displayName>Very Diet Soda</displayName>
+            <price>5.0</price>
+            <energy>5</energy>
+            <cookable>false</cookable>
+        </item>
+        <item>
+            <type>FOOD</type>
+            <name>grannySmithApple</name>
+            <displayName>Granny Smith Apple</displayName>
+            <price>1.0</price>
+            <energy>10</energy>
+            <cookable>false</cookable>
+        </item>
+        <item>
+            <type>FOOD</type>
+            <name>honeycrispApple</name>
+            <displayName>Honeycrisp Apple</displayName>
+            <price>2.0</price>
+            <energy>25</energy>
+            <cookable>false</cookable>
+        </item>
+        <item>
+            <type>FOOD</type>
+            <name>sweetPotatoes</name>
+            <displayName>Sweet Potatoes</displayName>
+            <price>5.0</price>
+            <energy>50</energy>
+            <cookable>true</cookable>
+        </item>
+        <item>
+            <type>MONSTER</type>
+            <name>weed</name>
+            <displayName>The Weed That Keeps Popping Up In Your Garden</displayName>
+            <strength>1</strength>
+        </item>
+        <item>
+            <type>MONSTER</type>
+            <name>slime</name>
+            <displayName>Slime</displayName>
+            <strength>3</strength>
+        </item>
+        <item>
+            <type>MONSTER</type>
+            <name>jupiterThePlanet</name>
+            <displayName>Jupiter, the planet</displayName>
+            <strength>1000</strength>
+        </item>
+        <item>
+            <type>MONSTER</type>
+            <name>zeus</name>
+            <displayName>Zeus, God of Lightning</displayName>
+            <strength>9999</strength>
+        </item>
+        <item>
+            <type>MONSTER</type>
+            <name>lightbulb</name>
+            <displayName>Lightbulb</displayName>
+            <strength>1</strength>
+        </item>
+        <item>
+            <type>MONSTER</type>
+            <name>sharpGlass</name>
+            <displayName>Sharp Glass</displayName>
+            <strength>2</strength>
+        </item>
+        <item>
+            <type>PET</type>
+            <name>dog</name>
+            <displayName>Dog</displayName>
+            <strength>10</strength>
+        </item>
+        <item>
+            <type>PET</type>
+            <name>cat</name>
+            <displayName>cat</displayName>
+            <strength>10</strength>
+        </item>
+        <item>
+            <type>PET</type>
+            <name>axolotl</name>
+            <displayName>Axolotl</displayName>
+            <strength>20</strength>
+        </item>
+        <item>
+            <type>PET</type>
+            <name>rhino</name>
+            <displayName>Rhino</displayName>
+            <strength>150</strength>
+        </item>
+        <item>
+            <type>PET</type>
+            <name>neilArmstrong</name>
+            <displayName>Neil Armstrong</displayName>
+            <strength>30</strength>
+        </item>
+        <item>
+            <type>PET</type>
+            <name>gordonRamseyPlushToy</name>
+            <displayName>Gordon Ramsey Plush Toy</displayName>
+            <strength>0</strength>
+        </item>
+        <item>
+            <type>PET</type>
+            <name>daBaby</name>
+            <displayName>DaBaby</displayName>
+            <strength>10000000</strength>
+        </item>
+        <item>
+            <type>LIQUID</type>
+            <name>water</name>
+            <displayName>Water</displayName>
+            <price>0</price>
+            <energy>0</energy>
+            <hydration>10</hydration>
+            <isBottleable>true</isBottleable>
+        </item>
+        <item>
+            <type>LIQUID</type>
+            <name>budLight</name>
+            <displayName>Bud Light</displayName>
+            <price>10</price>
+            <energy>40</energy>
+            <hydration>3</hydration>
+            <isBottleable>true</isBottleable>
+        </item>
+    </items>
+</xml>
