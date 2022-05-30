@@ -11,5 +11,6 @@ public enum ItemType {
 	WEAPON,
 	JUNK, //added
 	FOOD, //added
-	PLAYER
+	PLAYER,
+	TROPHY
 }
