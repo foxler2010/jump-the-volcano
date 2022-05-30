@@ -77,7 +77,7 @@ public class Liquid extends Food {
      * @param price The price of the liquid.
      * @param energy The amount of energy the liquid provides.
      * @param hydration Howmuch hydration the liquid provides when drunken.
-     * @param isBottleable Whether the loquid can be bottled or not.
+     * @param isBottleable Whether the liquid can be bottled or not.
      */
     public Liquid(String name, double price, int energy, int hydration, boolean isBottleable) {
 
