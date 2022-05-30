@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <config>
+        <scanner>
+            <input>System.in</input>
+        </scanner>
+        <startingInventory>
+            <contents>
+                <item>oldCanOfBeans</item>
+            </contents>
+        </startingInventory>
+        <player>
+            <name>Player</name>
+            <strength>10</strength>
+            <level>0</level>
+            <money>0</money>
+        </player>
+        <nearLiquid>
+            <liquid>water</liquid>
+        </nearLiquid>
+    </config>
+</xml>
