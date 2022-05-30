@@ -1,24 +1,23 @@
 package top.drewssite.volcano.items;
 
-public class Junk extends Item {
+/**
+ * The Junk class is the "default" subclass of Priceable.
+ * It does not add anything new, unlike the other subclasses of Priceable.
+ * These items are not supposed to be worth much, andan important characteristic of them is that
+ * you can find them when dumpster diving.
+ * @author foxler2010
+ * @since v1.0
+ * @see Priceable
+ */
+public class Junk extends Priceable {
 	
-	//VAR
-	private double price;
-	
-	
-	//GETTER AND SETTER
-	public double getPrice() {
-		return price;
-	}
-	
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	//CONSTRUCTOR
+	/**
+	 * The constructor for the Junk class
+	 * @param name The name of the Junk item
+	 * @param price The price of the item
+	 */
 	public Junk(String name, double price) {
-		super(name, ItemType.JUNK, false);
-		this.price = price;
+		super(name, ItemType.JUNK, price, false);
 	}
 
 }

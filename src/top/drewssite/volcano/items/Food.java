@@ -7,14 +7,9 @@ package top.drewssite.volcano.items;
  * @see Junk
  * @see Item
  */
-public class Food extends Junk {
+public class Food extends Priceable {
     
-    /**
-     * The amount of energy the food provides when eaten.
-     * @author foxler2010
-     * @since v1.0
-     * @see Food
-     */
+    //VARS
     private int energy;
     private final boolean cookable;
     private boolean cooked;
@@ -64,16 +59,16 @@ public class Food extends Junk {
 	}
 	
     /**
-     * Sets whether a food is cookable or not
-     * @param cookable Whether a food is cookable or not.
+     * Sets whether a food is cooked or not
+     * @param cooked Whether a food is cookable or not.
      * @author foxler2010
      * @throws FoodUncookableException
      * @since v1.0
      * @see Food
      */
-	public void setCookedness(Boolean cooked) throws FoodUncookableException {
+	public void cook() throws FoodUncookableException {
 		if (cookable) {
-            this.cooked = cooked;
+            this.cooked = true;
         } else {
             throw new FoodUncookableException("The " + this.getName() + " food item is not cookable.");
         }
@@ -91,7 +86,7 @@ public class Food extends Junk {
      */
     public Food(String name, double price, int energy, boolean cookable) {
 
-        super(name, price);
+        super(name, ItemType.FOOD, price, false);
         this.energy = energy;
         this.cookable = cookable;
         this.cooked = false;
@@ -113,7 +108,7 @@ public class Food extends Junk {
      */
     public Food(String name, double price, int energy, boolean cookable, boolean cooked) throws FoodUncookableException {
 
-        super(name, price);
+        super(name, ItemType.FOOD, price, false);
         this.energy = energy;
         this.cookable = cookable;
         if (cookable) {

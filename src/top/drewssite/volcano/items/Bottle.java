@@ -8,8 +8,9 @@ package top.drewssite.volcano.items;
  * @since v1.0
  * @see Junk
  */
-public class Bottle extends Junk {
+public class Bottle extends Priceable {
 
+    //VARS
     private int fullness;
     private Liquid contents;
 
@@ -21,11 +22,12 @@ public class Bottle extends Junk {
      * @param fullness  How full the Bottle is
      * @param contents  What Liquid is stored inside the Bottle
      * @since v1.0
-     * @see Junk
+     * @see Bottle
+     * @see Priceable
      */
     public Bottle(String name, double price, int fullness, Liquid contents) {
 
-        super(name, price);
+        super(name, ItemType.BOTTLE, price, false);
 
         this.fullness = fullness;
         this.contents = contents;
@@ -38,11 +40,12 @@ public class Bottle extends Junk {
      * @param price The price of the Bottle
      * @author foxler2010
      * @since v1.0
-     * @see Junk
+     * @see Bottle
+     * @see Priceable
      */
     public Bottle(String name, double price) {
 
-        super(name, price);
+        super(name,ItemType.BOTTLE, price, false);
 
         //empty bottle
         this.fullness = 0;
@@ -55,7 +58,8 @@ public class Bottle extends Junk {
      * @author foxler2010
      * @return The fullness of the Bottle
      * @since v1.0
-     * @see Junk
+     * @see Botte
+     * @Priceable
      */
     public int getFullness() {
         return fullness;
@@ -66,7 +70,8 @@ public class Bottle extends Junk {
      * @author foxler2010
      * @param fullness The fullness of the Bottle
      * @since v1.0
-     * @see Junk
+     * @see Bottle
+     * @see Priceable
      */
     public void setFullness(int fullness) {
         this.fullness = fullness;
@@ -77,7 +82,8 @@ public class Bottle extends Junk {
      * @author foxler2010
      * @return The contents of the Bottle
      * @since v1.0
-     * @see Junk
+     * @see Bottle
+     * @see Priceable
      */
     public Liquid getContents() {
         return contents;
@@ -88,7 +94,8 @@ public class Bottle extends Junk {
      * @author foxler2010
      * @param contents The contents of the Bottle
      * @since v1.0
-     * @see Junk
+     * @see Bottle
+     * @see Priceable
      */
     public void setContents(Liquid contents) {
         this.contents = contents;
