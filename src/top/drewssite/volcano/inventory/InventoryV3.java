@@ -2,16 +2,16 @@ package top.drewssite.volcano.inventory;
 
 import java.util.ArrayList;
 
+import top.drewssite.volcano.data.Data;
 import top.drewssite.volcano.items.Item;
 import top.drewssite.volcano.items.ItemType;
-import top.drewssite.volcano.items.Player;
 
 /** The third iteration
  * @author foxler2010
  * @since v1.0
  * @see Player
  */
-class InventoryV3 {
+public class InventoryV3 {
     
     //sublists are stored here
     private ArrayList<ArrayList<Item>> inventory;
@@ -28,13 +28,25 @@ class InventoryV3 {
     private final ArrayList<Integer> maxItemsOfTypeAmount;
 
     /**
-     * Creates a new InventoryV3
-     * @param maxItems The max number of items that can be stored in the inventory
+     * Creates a new InventoryV3.
+     * @param maxTotalItems The max amount of items that can be stored in the inventory. -1 is infinite.
+     * @param maxItemsID A list of items with maximum storage limits
+     * @param maxItemsAmount A list corresponding to maxItemsID which contains the amounts of each item allowed in the inventory.
+     * If the item "oldCanOfBeans" was at index 0 in maxItemsID then the number at index 0 in maxItemsAmount would be the maximum amount of
+     * oldCanOfBeans items allowed in the inventory.
+     * @param maxItemsOfTypeID This list and the corresponding integer list mirror that of maxItemsID and maxItemsAmount. The only difference is that
+     * maxItemsOfTypeID and maxItemsOfTypeAmount control the max amount of a type of item instead of a specific item.
+     * @param maxItemsOfTypeAmount This list corresponds to maxItemsOfTypeID, providing the maximum amounts of items for certain types.<br><br>
+     * <b>An important note</b> for all maxItems lists is that if the item or type in the ID list is null/does not exist, then the value at the same index in
+     * the Amount list does not do anything. Be sure that your items and types match up when creating these lists, or the limits may be incorrect/not set
      * @author foxler2010
+     * @throws InventorySublistFullException
+     * @throws InventoryItemLimitReachedException
+     * @throws InventoryFullException
      * @since v1.0
      * @see InventoryV3
      */
-    InventoryV3(int maxTotalItems, ArrayList<Item> maxItemsID, ArrayList<Integer> maxItemsAmount, ArrayList<ItemType> maxItemsOfTypeID, ArrayList<Integer> maxItemsOfTypeAmount) {
+    public InventoryV3(int maxTotalItems, ArrayList<Item> maxItemsID, ArrayList<Integer> maxItemsAmount, ArrayList<ItemType> maxItemsOfTypeID, ArrayList<Integer> maxItemsOfTypeAmount) {
 
         inventory = new ArrayList<ArrayList<Item>>();
         types = new ArrayList<ItemType>();
@@ -57,7 +69,7 @@ class InventoryV3 {
      * @see InventoryV3
      * @see SublistAlreadyCreatedException
      */
-    void createSublist(ItemType type) throws SublistAlreadyCreatedException {
+    private void createSublist(ItemType type) throws SublistAlreadyCreatedException {
 
         for (int i = 0; i < types.size(); i++) {
 
@@ -87,7 +99,7 @@ class InventoryV3 {
      * @see InventoryV3
      */
     //delete sublist
-    void deleteSublist(ItemType type, boolean clearList) throws SublistNotEmptyException {
+    private void deleteSublist(ItemType type, boolean clearList) throws SublistNotEmptyException {
 
         boolean sublistDeleted = false;
 
@@ -127,11 +139,12 @@ class InventoryV3 {
 
     /** Returns the number of a specified item in the inventory
      * @param item The item to count
+     * @return The amount of a specific item in the inventory
      * @author foxler2010
      * @since v1.0
      * @see InventoryV3
      */
-    int amountOf(Item item) {
+    public int amountOf(Item item) {
 
         int amountOfItem = 0;
 
@@ -151,10 +164,26 @@ class InventoryV3 {
 
     /** Returns the amount of items of the specified type contained within the inventory
      * @param type The type of item to return the amount of
+     * @return The amount of items of a certain type contained in the inventory
+     * @author foxler2010
+     * @since 1.0
+     * @see InventoryV3
      */
-    int amountOf(ItemType type) {
+    public int amountOf(ItemType type) {
 
         return inventory.get(types.indexOf(type)).size();
+
+    }
+
+    /** Returns the number of different types of items that are stored within the inventory
+     * @return The amount of different types of items stored within the inventory
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
+    public int amountOfTypes() {
+
+        return inventory.size();
 
     }
 
@@ -164,7 +193,7 @@ class InventoryV3 {
      * @since v1.0
      * @see InventoryV3
      */
-    int totalItems() {
+    public int totalItems() {
 
         int size = 0; 
 
@@ -186,7 +215,17 @@ class InventoryV3 {
 
     }
 
-    void addItem(Item item) throws InventoryFullException, InventoryItemLimitReachedException, InventorySublistFullException {
+    
+    /** Add an item to the inventory
+     * @param item The item to add
+     * @throws InventoryFullException
+     * @throws InventoryItemLimitReachedException
+     * @throws InventorySublistFullException
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
+    public void addItem(Item item) throws InventoryFullException, InventoryItemLimitReachedException, InventorySublistFullException {
 
         //step 1, set some variables
         boolean maxItemsLimit = true;
@@ -262,7 +301,15 @@ class InventoryV3 {
 
     }
 
-    void removeItem(Item item) throws ItemNotInInventoryException {
+    
+    /** Removes an item from the inventory
+     * @param item The item to remove
+     * @throws ItemNotInInventoryException
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
+    public void removeItem(Item item) throws ItemNotInInventoryException {
 
         try {
 
@@ -288,6 +335,72 @@ class InventoryV3 {
             }
 
         }
+
+    }
+
+    public void renameItem(Item item, String newName) throws ItemNotInInventoryException {
+
+        Data.player.getInventory().removeItem(item);
+
+        item.setName(newName);
+
+        try {Data.player.getInventory().addItem(item);} catch (InventoryFullException e) {} catch (InventorySublistFullException e) {} catch (InventoryItemLimitReachedException e) {} //the errors will never happen, we just removed it so it will be able to be replaced.
+
+    }
+
+    /** Return a list of all the items of a certain type
+     * @param type The type to return a list of items of.
+     * @return A list of all items of the specified type
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
+    public ArrayList<Item> getAllItemsOfType(ItemType type) {
+
+        return inventory.get(types.indexOf(type));
+
+    }
+
+    /** Outputs every item in the inventory together in one ArrayList<Item>.
+     * @return An ArrayList<Item> containing every item in the player's inventory
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
+    public ArrayList<Item> toArrayList() {
+
+        ArrayList<Item> list = new ArrayList<Item>();
+
+        for (int i = 0; i < inventory.size(); i++) {
+
+            for (int j = 0; j < inventory.get(i).size(); i++) {
+
+                list.add(inventory.get(i).get(j));
+
+            }
+
+        }
+
+        return list;
+
+    }
+
+    /** Checks to see whether an item exists within the inventory
+     * @param item the item to check for
+     * @return whether the item is present in the inventory or not
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
+    public boolean checkForItem(Item item) {
+
+            if (inventory.get(types.indexOf(item.getType())).contains(item)) { //check if the item's sublist contains the item
+
+                return true; //if it does return true; break
+
+            }
+
+            return false; //if it doesn't the false is returned
 
     }
 
@@ -349,7 +462,7 @@ class InventoryV3 {
      * @since v1.0
      * @return A list of everything in the inventory, with items of the same instance grouped together.
      */
-    String fancyToString() {
+    public String fancyToString() {
 
         //initialize the finalString variable
         String finalString = "";
@@ -405,6 +518,25 @@ class InventoryV3 {
         //return final result
         return finalString;
         
+    }
+
+    /** Clears the inventory of all items. Used when the player dies and chooses to ressurect themselvves.
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
+    public void clear() {
+
+        for (int i = 0; i < inventory.size(); i++) {
+
+            for (int j = 0; j < inventory.get(i).size(); i++) {
+
+                inventory.get(i).remove(j);
+
+            }
+
+        }
+
     }
 
 }

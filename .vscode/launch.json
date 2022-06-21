@@ -8,7 +8,14 @@
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
-            "mainClass": "top.drewssite.volcano.Main",
+            "mainClass": "top.drewssite.volcano.core.Main",
+            "projectName": "jump-the-volcano_aa022cb4"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "top.drewssite.volcano.Main"
         },
         {
             "type": "java",

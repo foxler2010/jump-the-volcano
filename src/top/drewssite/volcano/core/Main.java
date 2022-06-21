@@ -39,17 +39,6 @@ public class Main {
 		System.out.println("Let's get started with the game!");
 		System.out.println("--------------------------------------------------------------------------");
 		System.out.println();
-		
-		/*
-		 * MAIN LOOP STARTS HERE
-		 * 
-		 * Structure of it:
-		 * 
-		 * PHASE 1: Report info to the player on their level, balance, and important inventory items (DONE!)	
-		 * PHASE 2: Prompt them on what they would like to do. This prompt has different choices every time (DONE!)
-		 * PHASE 3: Carry out the action. changing the player's instance vars along the way. This is the only step where the vars are changed.
-		 * PHASE 4: Repeat from step 1, starting a new turn
-		 */
 
 		//the loop begins
 		while (Data.continuingGame) {
@@ -63,7 +52,7 @@ public class Main {
 			if(Data.yesNoPrompt("Would you like to view your inventory? [y/n] ", "y", "n")) {
 
 				//check for emptiness
-				if(Data.player.sizeOfInventory() == 0) {
+				if(Data.player.getInventory().totalItems() == 0) {
 
 					System.out.println("You inventory is currently empty.");
 
@@ -72,7 +61,7 @@ public class Main {
 					System.out.println("Here it is:");
 					System.out.println();
 
-					System.out.print(Data.player.inventoryFancyToString()); //workhorse command, does majority of the work
+					System.out.print(Data.player.getInventory().fancyToString()); //workhorse command, does majority of the work
 
 					//newline for readability
 					System.out.println();
@@ -85,22 +74,18 @@ public class Main {
 
 			}
 
-			//NEWLINE FOR READABILITY
 			System.out.println();
-			
-			//PHASE 2
-			//display options
 
-			//determine availability of options
-			ArrayList<Option> availableOptions = new ArrayList<Option>();
+			//make list to store the available options for this turn
+			ArrayList<Options> availableOptions = new ArrayList<Options>();
 
 			//loop thru every option that exists
-			for (int i = 0; i < Option.values().length; i++) { //uses Option.values(), which returns an Option[] containing all values in Option.
+			for (int i = 0; i < Options.values().length; i++) { //uses Option.values(), which returns an Option[] containing all values in the Option enum.
 
 				//if the option we are looping through is currently available to the player, add it to the list.
-				if (Option.values()[i].isAvailable()) {
+				if (Options.values()[i].isAvailable()) {
 
-					availableOptions.add(Option.values()[i]);
+					availableOptions.add(Options.values()[i]);
 
 				}
 
@@ -114,6 +99,7 @@ public class Main {
 			for (int i = 0; i < availableOptions.size(); i++) {
 				
 				//print the option to the screen. This code figures out whether the option gets the (NEW!) tag or not, so I don't have to create duplicate options like I used to.
+				//I don't like having to use all the different methods, so I will be switcing to an even more flexible system later on.
 				int currentOptionVisits;
 				switch (availableOptions.get(i)) {
 					case JUMP_THE_VOLCANO: currentOptionVisits = Data.player.getNumOfVolcanoVisits(); break;
@@ -145,7 +131,7 @@ public class Main {
 
 				}
 					
-			}
+			} //go back and print the next option to the screen
 			
 			//newline for readability
 			System.out.println();
@@ -210,15 +196,7 @@ public class Main {
 
 					//clear inventory
 					//does NOT restore starting inventory. maybe that will be toggleable in the future
-					for (int i = 0; i < 7; i++) {
-
-						for (int j = 0; j < Data.player.sizeOfSubList(i); j++) {
-
-							Data.player.removeItem(i, j);
-
-						}
-
-					}
+					Data.player.getInventory().clear();
 
 					//reset lifeTurns to 0
 					Data.lifeTurns = 0;

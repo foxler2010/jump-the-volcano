@@ -9,7 +9,7 @@ package top.drewssite.volcano.items;
  * @since v1.0
  * @see Priceable
  */
-public class Junk extends Priceable {
+public final class Junk extends Priceable {
 	
 	/**
 	 * The constructor for the Junk class

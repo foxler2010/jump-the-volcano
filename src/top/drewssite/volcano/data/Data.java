@@ -6,10 +6,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 import top.drewssite.volcano.core.Main;
-import top.drewssite.volcano.core.Option;
+import top.drewssite.volcano.core.Options;
 import top.drewssite.volcano.inventory.Inventory;
+import top.drewssite.volcano.inventory.InventoryV3;
 import top.drewssite.volcano.items.Bottle;
 import top.drewssite.volcano.items.Food;
+import top.drewssite.volcano.items.Item;
+import top.drewssite.volcano.items.ItemType;
 import top.drewssite.volcano.items.Junk;
 import top.drewssite.volcano.items.Liquid;
 import top.drewssite.volcano.items.Monster;
@@ -42,8 +45,28 @@ public class Data {
 	public static final Random random = new Random();
 
 	/**
+	 * Displays a prompt and returns user input
+	 * @param prompt The prompt the player is given
+	 * @return The user's input
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final String prompt(String prompt) {
+
+		System.out.print(prompt); //display prompt
+
+		String response = Data.scanner.next(); //get user input
+
+		System.out.println(); //newline
+
+		return response; //return result
+
+	}
+
+	/**
 	 * This method prompts the user to enter one of two options (ex. yes/no question),
-	 * and returns a boolean that is either true or flase depending on the user input.
+	 * and returns a boolean that is either true or false depending on the user input.
 	 * @param prompt The prompt the player is given
 	 * @param isTrue The string the player must enter for the boolean to be true
 	 * @param isFalse The string the player must enter for the boolean to be false
@@ -105,6 +128,71 @@ public class Data {
 			}
 		}
 		return answer;
+	}
+
+	/**
+	 * This method prompts the user to enter a string and returns true or false based on whether that string matches the isTrue parameter.
+	 * @param prompt The prompt the player is given
+	 * @param isTrue The string the player must enter for returned boolean to be true
+	 * @return A boolean detailing whether the player entered the correct string
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final boolean stringPrompt(String prompt, String isTrue) {
+
+		boolean answer = false;
+
+		System.out.print(prompt);
+
+		String response = Data.scanner.next();
+
+		System.out.println();
+
+		if (response.equals(isTrue)) {
+
+			answer = true;
+
+		} else {
+
+			answer = false;
+
+		}
+
+		return answer;
+		
+	}
+
+	/**
+	 * This method is an extension of the regular stringPrompt() method, allowing as many true strings as needed.
+	 * @param prompt The prompt the player is given
+	 * @param isTrue The strings the player can enter for returned boolean to be true
+	 * @return A boolean detailing whether the player entered the correct string
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Data
+	 */
+	public static final boolean stringPrompt(String prompt, ArrayList<String> isTrue) {
+
+		boolean answer = false; //false by default
+
+		System.out.print(prompt); //print the prompt
+
+		String response = Data.scanner.next(); //wait for user input; store it to the var
+
+		System.out.println(); //newline
+
+		for(int i = 0; i < isTrue.size(); i++) { //loop thru all the true strings
+
+			if (response.equals(isTrue.get(i))) { //if the input matches the current true string, set answer to true
+
+				answer = true;
+
+			}
+		} //repeat for the rest of the true strings
+
+		return answer; //true if input matches any of the true strings, otherwise it stays false
+
 	}
 	
 	/**
@@ -174,7 +262,7 @@ public class Data {
 	 * @see Player
 	 * @see Data
 	 */
-	public static Inventory startingInventory = new Inventory();
+	public static InventoryV3 startingInventory = new InventoryV3(-1, new ArrayList<Item>(), new ArrayList<Integer>(), new ArrayList<ItemType>(), new ArrayList<Integer>());
 	
 	/*
 	 * Here is where you would add items into startingInventory.
@@ -196,7 +284,6 @@ public class Data {
 	 * @see Data
 	 */
 	public static Player player = new Player("Player", 10, 0, 0, Data.startingInventory);
-
 	/**
 	 * The number of turns the player has taken in total throughout the whole save. Does not reset after the player dies.
 	 * @author foxler2010
@@ -237,7 +324,7 @@ public class Data {
 		nearLiquid.add(Data.water);
 	}
 
-	public static ArrayList<Option> startingOptions = new ArrayList<Option>();
+	public static ArrayList<Options> startingOptions = new ArrayList<Options>();
 
 	//option code to go here
 

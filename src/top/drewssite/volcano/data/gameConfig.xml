@@ -18,5 +18,8 @@
         <nearLiquid>
             <liquid>water</liquid>
         </nearLiquid>
+        <dataFiles>
+            <file>defaultItems.xml</file>
+        </dataFiles>
     </config>
 </xml>

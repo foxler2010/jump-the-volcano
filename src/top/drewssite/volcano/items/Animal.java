@@ -1,14 +1,34 @@
 package top.drewssite.volcano.items;
 
 import top.drewssite.volcano.data.Data;
+import top.drewssite.volcano.inventory.InventoryV3;
 
 //it's an item that is alive
 //it also has some extra alive-stuff-only attributes (health, strength, etc)
 public abstract class Animal extends Item {
 
-	//VAR
+	/** The strength of the Animal
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Animal
+	 */
 	private int strength;
+
+	/** The health of the animal. If it's zero they will die by the end of the turn
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Animal
+	 */
 	private int health;
+
+	/**
+	 * The Inventory object storing all the items in the animal's possesion
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Animal
+	 */
+	
+	private InventoryV3 inventory;
 	
 	//GETTERS AND SETTERS
 	public int getStrength() {
@@ -33,13 +53,14 @@ public abstract class Animal extends Item {
 	}
 	
 	//CONSTRUCTOR takes in name, price, and type
-	public Animal(String name, ItemType type, int strength, boolean important) {
+	public Animal(String name, ItemType type, int strength, boolean important, InventoryV3 inventoryV3) {
 		
 		super(name, type, important);
 		
 		//don't forget about the new animal-only stuff
 		this.strength = strength;
 		this.health = 100;
+		this.inventory = inventoryV3;
 	}
 
 
@@ -61,7 +82,7 @@ public abstract class Animal extends Item {
 
 		Data.player.setHealth(Data.player.getHealth() + foodEnergy); //increase health by the amount of energy the food provides
 
-		int extraEnergy = 100 - Data.player.getHealth(); //max health is 100, so anything above is extra. calculate extra energy and sore it to a var
+		int extraEnergy = 100 - Data.player.getHealth(); //max health is 100, so anything above is extra. calculate extra energy and store it to a var
 
 		Data.player.setHealth(Data.player.getHealth() - extraEnergy); //subtract the extra emergy from the health so we stay at the max of 100 health
 
@@ -69,8 +90,20 @@ public abstract class Animal extends Item {
 		
 	}
 
+	/** Returns the animal's inventory.
+	 * @return The animal's inventory
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Animal
+	 */
+	public InventoryV3 getInventory() {
+
+		return inventory;
+
+	}
+
 	/**
-	 * Unfinished method that will be used for comat mechanics.
+	 * Unfinished method that will be used for combat mechanics.
 	 * @author foxler2010
 	 * @param target The thing you want to attack
 	 * @since v1.0

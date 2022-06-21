@@ -3,6 +3,10 @@ package top.drewssite.volcano.core;
 import java.util.ArrayList; //used in FILL_BOTTLE option, which is currently commented
 
 import top.drewssite.volcano.data.Data;
+import top.drewssite.volcano.inventory.InventoryFullException;
+import top.drewssite.volcano.inventory.InventoryItemLimitReachedException;
+import top.drewssite.volcano.inventory.InventorySublistFullException;
+import top.drewssite.volcano.inventory.ItemNotInInventoryException;
 import top.drewssite.volcano.items.Food;
 import top.drewssite.volcano.items.ItemType;
 import top.drewssite.volcano.items.Junk;
@@ -11,7 +15,7 @@ import top.drewssite.volcano.items.Junk;
  * Here is where all the options and their code is stored. I am putting option docs here as I don't have anywhere else to put them for now.
  * 
  * Note: Docs look better inside the Option.java file, go jump to it instead of reading the little pop-up
- * vscode gives you when you hover over terms. Then you can see the line breaks I typed.
+ * vscode gives you when you hover over terms. Then you can see the line breaks I've inserted between things.
  * 
  * To make a new option, add a new enum constant to the list below and put its fancy name in parentheses,
  * along with the code for the option in a method called "opCode()",
@@ -34,7 +38,7 @@ import top.drewssite.volcano.items.Junk;
  * @see Main
  * @see Data
  */
-public enum Option {
+public enum Options {
     
     /**
      * This is the code for the "Jump the Volcano" option you get every turn.
@@ -65,16 +69,112 @@ public enum Option {
                     System.out.println("Everybody is really impressed with your volcano-jumping skills");
                     System.out.println("They give you $1000 and a cool trophy as a prize for jumping the volcano.");
                     Data.player.setMoney(Data.player.getMoney() + 1000);
-                    Data.player.addItem(Data.coolTrophy);
-                    for (int i = 0; i < Data.player.sizeOfSubList(0); i++) {
 
-                        if (Data.player.getItem(ItemType.JUNK, i).getName() == Data.coolTrophy.getName()) {
+                    try {
 
-                            Data.player.getItem(ItemType.JUNK, i).setName("Volcano Jumping Trophy");
+                        Data.player.getInventory().addItem(Data.coolTrophy);
+
+                    } catch (InventoryFullException e) {
+
+                        System.out.println("Unfortunately, you don't have enough space to carry the trophy.");
+                        System.out.println("You know that you need to have this trophy, so you must get rid of something in order to recieve it.");
+                        System.out.println();
+                        
+                        boolean itemRemoved = false;
+                        
+                        while (itemRemoved == false) {
+                            
+                            String response = Data.prompt("What is the name of the item you want to discard: ");
+
+                            for(int i = 0; i < Data.player.getInventory().totalItems(); i++) { //loop thru the whole inventory
+    
+                                if (response.equals(Data.player.getInventory().toArrayList().get(i).getName())) { //if the input matches an item's name
+                    
+                                    try {Data.player.getInventory().removeItem(Data.player.getInventory().toArrayList().get(i));} catch (ItemNotInInventoryException f) {} //remove the item, try/catch  is becuase the error can never happen, java just doesn't know that
+                                    itemRemoved = true;
+                                    break; //break so no more items of the same name are removed
+                    
+                                }
+
+                            } //repeat for the rest of the true strings
+
+                            if (itemRemoved == false) { //tell player if item was not removed
+
+                                System.out.println("An item with that name was not found within your inventory. Please type in another item's name.");
+
+                            }
+
+                        }
+
+
+                    } catch (InventorySublistFullException e) {
+
+                        System.out.println("Unfortunately, you can ony hold " + e.getAmountOfItems() + " items of the " + e.getFullType().getName() + " type in your inventory.");
+                        System.out.println("You know that you need to have this trophy, so you must get rid of something in order to recieve it.");
+                        System.out.println();
+                        
+                        boolean itemRemoved = false;
+                        
+                        while (itemRemoved == false) {
+                            
+                            String response = Data.prompt("What is the name of the item you want to discard: ");
+
+                            for(int i = 0; i < Data.player.getInventory().totalItems(); i++) { //loop thru the whole inventory
+    
+                                if (response.equals(Data.player.getInventory().toArrayList().get(i).getName())) { //if the input matches an item's name
+                    
+                                try {Data.player.getInventory().removeItem(Data.player.getInventory().toArrayList().get(i));} catch (ItemNotInInventoryException f) {} //remove the item, try/catch  is becuase the error can never happen, java just doesn't know that
+                                    itemRemoved = true;
+                                    break; //break so no more items of the same name are removed
+                    
+                                }
+
+                            } //repeat for the rest of the true strings
+
+                            if (itemRemoved == false) { //tell player if item was not removed
+
+                                System.out.println("An item with that name was not found within your inventory. Please type in another item's name.");
+
+                            }
+
+                        }
+
+                    } catch (InventoryItemLimitReachedException e) {
+
+                        System.out.println("Unfortunately, you can ony hold " + e.getAmountOfItems() + " " + e.getItem().getName() + "s in your inventory at once.");
+                        System.out.println("You know that you need to have this trophy, so you must get rid of something in order to recieve it.");
+                        System.out.println();
+                        
+                        boolean itemRemoved = false;
+                        
+                        while (itemRemoved == false) {
+                            
+                            String response = Data.prompt("What is the name of the item you want to discard: ");
+
+                            for(int i = 0; i < Data.player.getInventory().totalItems(); i++) { //loop thru the whole inventory
+    
+                                if (response.equals(Data.player.getInventory().toArrayList().get(i).getName())) { //if the input matches an item's name
+                    
+                                try {Data.player.getInventory().removeItem(Data.player.getInventory().toArrayList().get(i));} catch (ItemNotInInventoryException f) {} //remove the item, try/catch  is becuase the error can never happen, java just doesn't know that
+                                    itemRemoved = true;
+                                    break; //break so no more items of the same name are removed
+                    
+                                }
+
+                            } //repeat for the rest of the true strings
+
+                            if (itemRemoved == false) { //tell player if item was not removed
+
+                                System.out.println("An item with that name was not found within your inventory. Please type in another item's name.");
+
+                            }
 
                         }
 
                     }
+
+                    //change name of trophy to something unique
+                    try {Data.player.getInventory().renameItem(Data.coolTrophy, "Volcano Jumping Trophy");} catch (ItemNotInInventoryException e) {}
 
                 }
 
@@ -117,8 +217,16 @@ public enum Option {
             //choose random item from list of items that are in the dumpster
 		    Junk randomJunk = Data.junkItems[Data.random.nextInt(Data.junkItems.length)];
 
-		    //add it to player's inventory
-		    Data.player.addItem(randomJunk);
+		    //try adding it to player's inventory
+		    try {
+                Data.player.getInventory().addItem(randomJunk);
+            } catch (InventoryFullException e) {
+                System.out.println("Your inventory is full, so you don't dumpster dive today.");
+            } catch (InventoryItemLimitReachedException e) {
+                System.out.println("You found a " + randomJunk.getName() + ", but you already have enough of that item, so you put it back.");
+            } catch (InventorySublistFullException e) {
+                System.out.println("You found a "+ randomJunk.getName() + ", but you already have enough of that type of item, so you put it back.");
+            }
 
 		    //tell player what they got
 		    System.out.println("You got a " + randomJunk.getName());
@@ -128,7 +236,7 @@ public enum Option {
 
         @Override
         public boolean isAvailable() {
-            if (Data.player.sizeOfInventory() < 10) {
+            if (Data.player.getInventory().totalItems() < 10) {
                 return true;
             } else {
                 return false;
@@ -151,7 +259,7 @@ public enum Option {
         
         @Override
         public boolean isAvailable() {
-            if (Data.player.sizeOfInventory() >= 5 || Data.player.getMoney() >= 1) {
+            if (Data.player.getInventory().totalItems() >= 5 || Data.player.getMoney() >= 1) {
                 return true;
             } else {
                 return false;
@@ -208,7 +316,7 @@ public enum Option {
 
             Data.player.foodVisitsUp(1);
 
-            int amountOfFood = Data.player.sizeOfSubList(1);
+            int amountOfFood = Data.player.getInventory().amountOf(ItemType.FOOD);
 
             Food chosenFood = null;
             
@@ -216,9 +324,9 @@ public enum Option {
     
                 System.out.println("You have " + amountOfFood + " pieces of food: ");
     
-                for (int i = 0; i < amountOfFood; i++) {
+                for (int i = 0; i < Data.player.getInventory().getAllItemsOfType(ItemType.FOOD).size(); i++) {
         
-                    System.out.println((i + 1) + ") " + Data.player.getItem(ItemType.FOOD, i).getName());
+                    System.out.println((i + 1) + ") " + Data.player.getInventory().getAllItemsOfType(ItemType.FOOD).get(i).getName());
         
                 }
     
@@ -228,7 +336,7 @@ public enum Option {
     
                     if (playerInput == i - 1) {
 
-                        chosenFood = (Food) Data.player.getItem(ItemType.FOOD, (i - 1));
+                        chosenFood = (Food) Data.player.getInventory().getAllItemsOfType(ItemType.FOOD).get(i);
 
                     }
     
@@ -236,11 +344,11 @@ public enum Option {
 
             } else {
     
-                System.out.println("You have 1 " + Data.player.getItem(ItemType.FOOD, 0).getName());
+                System.out.println("You have 1 " + Data.player.getInventory().getAllItemsOfType(ItemType.FOOD).get(0).getName());
                 System.out.println();
                 if (Data.yesNoPrompt("Would you like to eat it? [y/n] ", "y", "n")) {
 
-                    chosenFood = (Food) Data.player.getItem(ItemType.FOOD, 0);
+                    chosenFood = (Food) Data.player.getInventory().getAllItemsOfType(ItemType.FOOD).get(0);
 
                 }
     
@@ -253,7 +361,7 @@ public enum Option {
         @Override
         public boolean isAvailable() {
             
-            if(Data.player.sizeOfSubList(1) > 0) {
+            if(Data.player.getInventory().getAllItemsOfType(ItemType.FOOD).size() > 0) {
             
                 return true;
             
@@ -365,7 +473,7 @@ public enum Option {
     
     private String name;
     
-    private Option(String name) {
+    private Options(String name) {
         this.name = name;
     }
 
@@ -386,7 +494,7 @@ public enum Option {
      * Mod makers, please see the modding documentation at https://drewssite.top/jump-the-volcano/mods
      * @author foxler2010
      * @since v1.0
-     * @see Option
+     * @see Options
      * @see Data
      */
     public void opCode() {
@@ -402,7 +510,7 @@ public enum Option {
      * and the option will be displayed every turn.
      * @author foxler2010
      * @since v1.0
-     * @see Option
+     * @see Options
      * @see Data
      */
     public boolean isAvailable() {

@@ -1,7 +1,7 @@
 package top.drewssite.volcano.items;
 
 import top.drewssite.volcano.data.Data;
-import top.drewssite.volcano.inventory.Inventory;
+import top.drewssite.volcano.inventory.InventoryV3;
 
 /**
  *	It's YOU!
@@ -13,7 +13,7 @@ import top.drewssite.volcano.inventory.Inventory;
  *	@see Item
  *	@since	v1.0
  */
-public class Player extends Animal {
+public final class Player extends Animal {
 	
 	/**
 	 * The experience level of the player. Can be used for a variety of things.
@@ -30,14 +30,6 @@ public class Player extends Animal {
 	 * @see Player
 	 */
 	private double money;
-
-	/**
-	 * The Inventory object storing all the items in the player's possesion
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Player
-	 */
-	private Inventory inventory = new Inventory();
 
 	/**
 	 * Number of times the player has chosen the Jump the Volcano option
@@ -106,25 +98,13 @@ public class Player extends Animal {
 	 * @param money	The inital amount of money the player has. This is 0 in a regular game.
 	 * @param startingInventory	This is what the player's inventory will contain when they start the game.
 	 */
-	public Player(String name, int strength, int level, double money, Inventory startingInventory) {
-		super(name, ItemType.PLAYER, strength, false);
+	public Player(String name, int strength, int level, double money, InventoryV3 startingInventory) {
+		super(name, ItemType.PLAYER, strength, false, startingInventory);
 		this.level = level;
 		this.money = money;
-		this.inventory = startingInventory;
 	}
 	
 	//GETTERS AND SETTERS
-	
-	/**
-	 * The getter for the level variable.
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public int getLevel() {
-		return level;
-	}
 	
 	/**
 	 * The getter for the money variable.
@@ -134,21 +114,11 @@ public class Player extends Animal {
 	 * @see Data
 	 */
 	public double getMoney() {
-	return money;
+
+		return money;
+
 	}
-	
-	/**
-	 * The setter for the level variable.
-	 * @author foxler2010
-	 * @param level The new value of the level variable
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	
+
 	/**
 	 * The setter for the money variable.
 	 * @author foxler2010
@@ -158,22 +128,11 @@ public class Player extends Animal {
 	 * @see Data
 	 */
 	public void setMoney(double money) {
+
 		this.money = money;
-	}
-
-	/**
-	 * Sets the player's level to the current value + levelsToAdd
-	 * @param levelsToAdd The amount of levels to add to the current value
-	 * @author foxler2010
-	 * @since v1.0
-	 * @see Player
-	 */
-	public void levelUp(int levelsToAdd) {
-
-		Data.player.setLevel(Data.player.getLevel() + levelsToAdd);
 
 	}
-
+	
 	/**
 	 * Sets the player's balance to the current value + dollarsToAdd
 	 * @param dollarsToAdd The amount of money to add to the current value
@@ -183,7 +142,47 @@ public class Player extends Animal {
 	 */
 	public void moneyUp(int dollarsToAdd) {
 
-		Data.player.setLevel(Data.player.getLevel() + dollarsToAdd);
+		Data.player.setMoney(Data.player.getMoney() + dollarsToAdd);
+
+	}
+
+	/**
+	 * The getter for the level variable.
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */ 
+	public int getLevel() {
+
+		return level;
+
+	}	
+	
+	/**
+	 * The setter for the level variable.
+	 * @author foxler2010
+	 * @param level The new value of the level variable
+	 * @since v1.0
+	 * @see Player
+	 * @see Data
+	 */ 
+	public void setLevel(int level) {
+
+		this.level = level;
+
+	}	
+
+	/**
+	 * Sets the player's level to the current value + levelsToAdd
+	 * @param levelsToAdd The amount of levels to add to the current value
+	 * @author foxler2010
+	 * @since v1.0
+	 * @see Player
+	 */ 
+	public void levelUp(int levelsToAdd) {
+
+		Data.player.setLevel(Data.player.getLevel() + levelsToAdd);
 
 	}
 
@@ -437,153 +436,6 @@ public class Player extends Animal {
 
 		Data.player.setNumOfQuittings(Data.player.getNumOfQuittings() + quitsToAdd);
 
-	}
-	
-	//INVENTORY MANAGEMENT
-	
-	/**
-	 * Returns an item in the inventory.
-	 * Does NOT remove the item from the list.
-	 * @author foxler2010
-	 * @param type The type of the item, in enum form.
-	 * @param index The index of the item within the sub-list.
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public Item getItem(ItemType type, int index) {
-		return inventory.getItem(type, index);
-	}
-	
-	/**
-	 * Adds an item to the inventory.
-	 * @author foxler2010
-	 * @param item The item to add to the inventory
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public void addItem(Item item) {
-		inventory.addItem(item);
-	}
-	
-	/**
-	 * Removes something from the inventory.
-	 * Shifts everything in the sub-list down one index if the removed item is not the last index.
-	 * @author foxler2010
-	 * @param item The item to remove from the inventory.
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public void removeItem(Item item) {
-		inventory.removeItem(item);
-	}
-
-	/**
-	 * Removes something from the inventory.
-	 * Shifts everything in the sub-list down one index if the removed item is not the last index.
-	 * @author foxler2010
-	 * @param type The type of the item to remove, in enum form
-	 * @param index the index of the item within the sub-list
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public void removeItem(ItemType type, int index) {
-		inventory.removeItem(type, index);
-	}
-
-	/**
-	 * Removes something from the inventory.
-	 * Shifts everything in the sub-list down one index if the removed item is not the last index.
-	 * @author foxler2010
-	 * @param typeIndex The index of the sublist containing the item to remove
-	 * @param index The index of the item within the sublist
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public void removeItem(int typeIndex, int index) {
-		inventory.removeItem(typeIndex, index);
-	}
-	
-	/**
-	 * Check if the item is in the inventory.
-	 * Returns either true or false.
-	 * Does not specify the amount of items. (if there are multiple copies)
-	 * @author foxler2010
-	 * @param item The item to check for
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public boolean checkForItem(Item item) {
-		return inventory.checkForItem(item);
-	}
-	
-	/**
-	 * Return the index of the inventory item specified.
-	 * If item does not exist, return -1.
-	 * If there are multiple copies of the item in the inventory, return the one with the lowest index.
-	 * @author foxler2010
-	 * @param item The item to find the index of
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public int indexOfItem(Item item) {
-		return inventory.indexOfItem(item);
-	}
-	
-	/**
-	 * Makes a string with the names of all items in the inventory.
-	 * @author foxler2010
-	 * @return A String detailing the contents of the player's inventory.
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public String inventoryToString() {
-		return inventory.toString();
-	}
-
-	/**
-	 * Same as inventoryToString() method, but the String lists two items as "itemName x2",
-	 * instead of "itemName, itemName, etc." Almost always more useful.
-	 * @author foxler2010
-	 * @return A String detailing the contents of the player's inventory.
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public String inventoryFancyToString() {
-		return inventory.fancyToString();
-	}
-
-	/**
-	 * Returns the number of items in the inventory
-	 * @author foxler2010
-	 * @return The size of the player's inventory
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public int sizeOfInventory() {
-		return inventory.sizeOfInventory();
-	}
-
-	/**
-	 * returns the number of items in the specified sublist
-	 * @author foxler2010
-	 * @param subListIndex The index of the sublist to return the size of.
-	 * @return The size of the sublist
-	 * @since v1.0
-	 * @see Player
-	 * @see Data
-	 */
-	public int sizeOfSubList(int subListIndex) {
-		return inventory.sizeOfSubList(subListIndex);
 	}
 	
 	/**
