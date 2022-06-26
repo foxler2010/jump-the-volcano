@@ -210,11 +210,13 @@ public class Main {
 				}//end resurrection if-else
 			}//end healthcheck
 			
-			if(Data.continuingGame) {
+			if (Data.continuingGame) {
+
 				//MARKS END OF TURN
 				//only shown if you didn't quit or if you die.
 				System.out.println("--------------------------------------------------------------------------");
 				System.out.println();
+
 			}//end turnmarker if
 			
 			//Increase turn counters by one at end of turn
@@ -230,4 +232,5 @@ public class Main {
 		Data.scanner.close();
 		
 	}//end main method
+	
 }//end main class

@@ -5,6 +5,9 @@ import top.drewssite.volcano.items.Item;
 import top.drewssite.volcano.items.ItemType;
 import top.drewssite.volcano.items.Player;
 
+//if you're wondering about why InventoryV3 is the third iteration, it is because this is the second;
+//the first version was just a regular ArrayList<Item>.
+
 /**
  * Unlike a traditional ArrayList, this one sorts everything into sub-lists.
  * The class is more of a wrapper than an object, as it only contains 1 internal variable,

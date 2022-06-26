@@ -13,11 +13,26 @@ import top.drewssite.volcano.items.ItemType;
  */
 public class InventoryV3 {
     
-    //sublists are stored here
+    /** List that stores lists of items. Each sublist stores a different type of item.
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
     private ArrayList<ArrayList<Item>> inventory;
-    //index of sublists based on item type
+
+    /** This list stores ItemTypes and the indexes of the types in the list are the indexes of those types' sublists in the inventory list. Used internally to manage sublists.
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
     private ArrayList<ItemType> types;
-    //max amount of items that can be stored in the inventory. -1 is infinite
+
+    /**
+     * Max amount of items that can be stored in the inventory. -1 is infinite.
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
     private final int maxTotalItems;
     
     //lists that can be used to set a max of a specific type or specific item
@@ -164,12 +179,18 @@ public class InventoryV3 {
 
     /** Returns the amount of items of the specified type contained within the inventory
      * @param type The type of item to return the amount of
-     * @return The amount of items of a certain type contained in the inventory
+     * @return The amount of items of a certain type contained in the inventory.
      * @author foxler2010
      * @since 1.0
      * @see InventoryV3
      */
     public int amountOf(ItemType type) {
+
+        if (types.indexOf(type) == -1) {
+
+            return 0;
+
+        }
 
         return inventory.get(types.indexOf(type)).size();
 
@@ -254,11 +275,90 @@ public class InventoryV3 {
         }
 
         //step 2, check if the the item can be added to the inventory
-        if ((this.totalItems() < this.maxTotalItems) || (this.maxTotalItems == -1)) {
+        if ((this.totalItems() < this.maxTotalItems) || (this.maxTotalItems == -1)) { //check if it fits into the whole inventory
 
-            if ((this.amountOf(item.getType()) < this.maxItemsOfTypeAmount.get(this.maxItemsOfTypeID.indexOf(item.getType()))) || !maxItemsOfTypeLimit) {
+            //best-case
+            if (!maxItemsOfTypeLimit) {
 
-                if ((this.amountOf(item) < this.maxItemsAmount.get(maxItemsID.indexOf(item))) || !maxItemsLimit) {
+                //best-case
+                if (!maxItemsLimit) {
+
+                    //step 3, add the item to the inventory
+
+                    try { //if sublist already exists
+                        
+                        this.inventory.get(this.types.indexOf(item.getType())).add(item);
+
+                    } catch (IndexOutOfBoundsException e) { //if we can't find it
+
+                        try {
+
+                            this.createSublist(item.getType()); //create new one
+                            this.inventory.get(this.types.indexOf(item.getType())).add(item); //then add
+
+                        } catch (SublistAlreadyCreatedException f) { //this code will never get called but we need it anyway
+
+                            f.printStackTrace();
+
+                        }
+
+                    }
+
+                } else if ((this.amountOf(item) < this.maxItemsAmount.get(maxItemsID.indexOf(item)))) {
+                    
+                    //step 3, add the item to the inventory
+
+                    try { //if sublist already exists
+                        
+                        this.inventory.get(this.types.indexOf(item.getType())).add(item);
+
+                    } catch (IndexOutOfBoundsException e) { //if we can't find it
+
+                        try {
+
+                            this.createSublist(item.getType()); //create new one
+                            this.inventory.get(this.types.indexOf(item.getType())).add(item); //then add
+
+                        } catch (SublistAlreadyCreatedException f) { //this code will never get called but we need it anyway
+
+                            f.printStackTrace();
+
+                        }
+
+                    }
+    
+                } else { //step 3, throw exception
+
+                    throw new InventoryItemLimitReachedException(item, this.maxItemsAmount.get(this.maxItemsID.indexOf(item)));
+
+                }
+
+            } else if ((this.amountOf(item.getType()) < this.maxItemsOfTypeAmount.get(this.maxItemsOfTypeID.indexOf(item.getType())))) {
+
+                if (!maxItemsLimit) {
+
+                    //step 3, add the item to the inventory
+
+                    try { //if sublist already exists
+                        
+                        this.inventory.get(this.types.indexOf(item.getType())).add(item);
+
+                    } catch (IndexOutOfBoundsException e) { //if we can't find it
+
+                        try {
+
+                            this.createSublist(item.getType()); //create new one
+                            this.inventory.get(this.types.indexOf(item.getType())).add(item); //then add
+
+                        } catch (SublistAlreadyCreatedException f) { //this code will never get called but we need it anyway
+
+                            f.printStackTrace();
+
+                        }
+
+                    }
+                    
+                } else if ((this.amountOf(item) < this.maxItemsAmount.get(maxItemsID.indexOf(item)))) {
                     
                     //step 3, add the item to the inventory
 
@@ -300,7 +400,8 @@ public class InventoryV3 {
         }
 
     }
-
+    //i realize now how bad the original version of .addItem() was; it was very hard to revise it so it works, and I am still questioning whether it was worth it to make InventoryV3 so configurable,
+    //but I continue to believe that it has helped me a lot with making more complicated code, so I think it was worth it. But still, so, so hard to pull off.
     
     /** Removes an item from the inventory
      * @param item The item to remove
@@ -338,6 +439,12 @@ public class InventoryV3 {
 
     }
 
+    /** Changes the name of an Item to something else. The Item has to be in the inventory, otherwise it wouldn't exist.
+     * This will probably be changed in the future.
+     * @author foxler2010
+     * @since v1.0
+     * @see InventoryV3
+     */
     public void renameItem(Item item, String newName) throws ItemNotInInventoryException {
 
         Data.player.getInventory().removeItem(item);
@@ -350,12 +457,18 @@ public class InventoryV3 {
 
     /** Return a list of all the items of a certain type
      * @param type The type to return a list of items of.
-     * @return A list of all items of the specified type
+     * @return A list of all items of the specified type. Returns an empty list if there are no items of the specified type.
      * @author foxler2010
      * @since v1.0
      * @see InventoryV3
      */
     public ArrayList<Item> getAllItemsOfType(ItemType type) {
+
+        if (types.indexOf(type) == -1) {
+
+            return new ArrayList<Item>();
+
+        }
 
         return inventory.get(types.indexOf(type));
 
@@ -527,11 +640,15 @@ public class InventoryV3 {
      */
     public void clear() {
 
-        for (int i = 0; i < inventory.size(); i++) {
+        for (int i = 0; i < types.size(); i++) {
 
-            for (int j = 0; j < inventory.get(i).size(); i++) {
+            try {
 
-                inventory.get(i).remove(j);
+                this.deleteSublist(types.get(i), true);
+
+            } catch (SublistNotEmptyException e) {
+
+                //this will never happen
 
             }
 

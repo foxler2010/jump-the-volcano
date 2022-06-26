@@ -458,9 +458,17 @@ public enum Options {
         @Override
         public void opCode() {
 
-            Data.player.quittingsUp(1);
-            
             Data.continuingGame = Data.yesNoPrompt("Do you want to continue playing? [y/n] ", "y", "n");
+            
+            if (!Data.continuingGame) {
+                
+                Data.player.quittingsUp(1);
+
+            }
+
+            //Quitting is not considered a turn. this makes sure you are in the exact same state as before you choose the option
+            Data.lifeTurns--;
+            Data.saveTurns--;
             
         }
 
