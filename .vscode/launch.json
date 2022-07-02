@@ -9,19 +9,7 @@
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "top.drewssite.volcano.core.Main",
-            "projectName": "jump-the-volcano_aa022cb4"
+            "args": "${command:SpecifyProgramArgs}"
         },
-        {
-            "type": "java",
-            "name": "Launch Main",
-            "request": "launch",
-            "mainClass": "top.drewssite.volcano.Main"
-        },
-        {
-            "type": "java",
-            "name": "Launch Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        }
     ]
 }
