@@ -29,6 +29,8 @@ bin/
 
 ### Java ###
 # Compiled class file
+bin/
+*.class
 
 # Log file
 *.log
@@ -74,3 +76,6 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 
 # End of https://www.toptal.com/developers/gitignore/api/java,groovy,gradle
+
+#VSCode
+.vscode/
