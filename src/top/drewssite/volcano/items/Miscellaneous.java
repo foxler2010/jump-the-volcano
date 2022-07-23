@@ -7,17 +7,17 @@ package top.drewssite.volcano.items;
  * @since v1.0
  * @see Item
  */
-public class Other extends Item {
+public class Miscellaneous extends Item {
 
-    /** Constructs a new Other item.
+    /** Constructs a new Miscellaneous item.
      * @author foxler2010
      * @param name The name of the Item
      * @since v1.0
      * @see Other
      */
-    public Other(String name) {
+    public Miscellaneous(String name) {
 
-        super(name, ItemType.OTHER, false);
+        super(name, ItemType.MISCELLANEOUS, false);
 
     }
     

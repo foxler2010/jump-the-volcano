@@ -1,7 +1,5 @@
 package top.drewssite.volcano.core;
 
-import java.util.ArrayList; //used in FILL_BOTTLE option, which is currently commented
-
 import top.drewssite.volcano.data.Data;
 import top.drewssite.volcano.inventory.InventoryFullException;
 import top.drewssite.volcano.inventory.InventoryItemLimitReachedException;
@@ -40,22 +38,13 @@ import top.drewssite.volcano.items.Junk;
  */
 public enum Options {
     
-    /**
-     * This is the code for the "Jump the Volcano" option you get every turn.
-     * 
-     * @author foxler2010
-     * @since v1.0
-     * @see Option
-     * @see Data
-     * @see Main
-     */
-    JUMP_THE_VOLCANO("Jump the Volcano") {
+    JUMP_THE_VOLCANO("Jump the Volcano", 0) {
 
         @Override
         public void opCode() {
 
             //increase # of visits by 1
-            Data.player.volcanoVisitsUp(1);
+            Data.player.visitsUp(0);
 
             //gen random boolean to decide between whether you successfully jump the volcano or not.
             //10% chance of success per attempt
@@ -197,22 +186,13 @@ public enum Options {
 
     },
 
-    /**
-     * This is the code for the "Dumpster Dive" option you get when you have a small amount of items.
-     * 
-     * @author foxler2010
-     * @since v1.0
-     * @see Option
-     * @see Data
-     * @see Main
-     */
-    DUMPSTER_DIVE("Dumpster Dive") {
+    DUMPSTER_DIVE("Dumpster Dive", 1) {
 
         @Override
         public void opCode() {
 
             //increase # of visits by 1
-            Data.player.dumpsterVisitsUp(1);
+            Data.player.visitsUp(1);
 
             //choose random item from list of items that are in the dumpster
 		    Junk randomJunk = Data.junkItems[Data.random.nextInt(Data.junkItems.length)];
@@ -245,13 +225,13 @@ public enum Options {
 
     },
 
-    SHOP("Go to the Shop") {
+    SHOP("Go to the Shop", 2) {
         
         @Override
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.shopVisitsUp(1);
+            Data.player.visitsUp(2);
 
             System.out.println("You visit the shop and sell nothing because you are a hoarder.");
             
@@ -267,13 +247,13 @@ public enum Options {
         }
     },
 
-    PET_STORE("Go to the Pet Store") {
+    PET_STORE("Go to the Pet Store", 3) {
 
         @Override
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.petStoreVisitsUp(1);
+            Data.player.visitsUp(3);
 
         }
 
@@ -288,13 +268,13 @@ public enum Options {
         
     },
 
-    ARENA("Visit the Arena") {
+    ARENA("Visit the Arena", 4) {
 
         @Override
         public void opCode() {
             
             //increase # of visits by 1
-            Data.player.arenaVisitsUp(1);
+            Data.player.visitsUp(4);
 
         }
 
@@ -309,12 +289,12 @@ public enum Options {
         
     },
 
-    EAT_FOOD("Eat some food") {
+    EAT_FOOD("Eat some food", 5) {
 
         @Override
         public void opCode() {
 
-            Data.player.foodVisitsUp(1);
+            Data.player.visitsUp(5);
 
             int amountOfFood = Data.player.getInventory().amountOf(ItemType.FOOD);
 
@@ -373,87 +353,7 @@ public enum Options {
 
     },
 
-    // broken option
-    // FILL_BOTTLE("Fill Bottle") {
-
-    //     @Override
-    //     public void opCode() {
-            
-    //         boolean multipleBottles; //if there is more than one bottle or not
-    //         ArrayList<Bottle> bottlesInInventory = new ArrayList<Bottle>(); //output of loop
-    //         Item currentItem; //used only inside loop
-    //         for (int i = 0; i < Data.player.sizeOfSubList(0); i++) { //loop counts how many bottles you have
-
-    //             currentItem = Data.player.getItem(ItemType.JUNK, i);
-
-    //             if (currentItem.getClass() == Bottle.class) {
-
-    //                 bottlesInInventory.add((Bottle) currentItem); /* currentItem will always be assigned to a Bottle here,
-    //                                                                * but we still need to cast because the
-    //             }                                                  * variable type is an Item. */
-
-    //         }
-
-    //         //multipleBottles is set to true if the bottlesInInventory list has more than one item in it
-    //         if (bottlesInInventory.size() > 1) {
-    //             multipleBottles = true;
-    //         }
-
-    //         System.out.println("You are currently able to fill your bottle with " + Data.nearLiquid.size() + " liquids near you");
-    //         System.out.println();
-    //         System.out.println("Here they are:");
-
-    //         for (int i = 0; i < Data.nearLiquid.size(); i++) {
-
-    //             System.out.println((i + 1) + ") " + Data.nearLiquid.get(i).getName());                    
-
-    //         }
-
-    //         int liquid = Data.intPrompt("Which liquid would you like to fill your bottle with? ");
-
-    //     }
-
-    //     @Override
-    //     public boolean isAvailable() {
-            
-    //         //create var
-    //         boolean bottleInInventory = false;
-    //         //loop thru junk sublist
-    //         for (int i = 0; i < Data.player.sizeOfSubList(0); i++) {
-
-    //             //if current item is a Bottle, bottleInInventory = true; otherwise do nothing
-    //             if (Data.player.getItem(ItemType.JUNK, i).getClass() == Bottle.class) {
-
-    //                 //set var to true
-    //                 bottleInInventory = true;
-
-    //             }
-
-    //             //repeat loop until a Bottle is found (or not found)
-    //         }
-
-    //         //check if player is near a liquid AND if they have a Bottle in their inventory
-    //         //if they satisfy both conditions, return true
-    //         try {
-
-    //             if (Data.nearLiquid.get(0) != null && bottleInInventory) { //if index 0 has nothing in it, there must'nt be anything in the other indexes either.
-    
-    //                 return true;
-    
-    //             }
-
-    //         } catch (IndexOutOfBoundsException e) { //if the player is not near any liquids this will happen during the above if statement.
-
-    //             return false;
-
-    //         }
-
-    //         return false; //if player is near a liquid and not in possesion of a Bottle
-
-    //     }
-    // },
-
-    QUIT("Exit the game") {
+    QUIT("Exit the game", 6) {
 
         @Override
         public void opCode() {
@@ -462,7 +362,7 @@ public enum Options {
             
             if (!Data.continuingGame) {
                 
-                Data.player.quittingsUp(1);
+                Data.player.visitsUp(6);
 
             }
 
@@ -480,17 +380,63 @@ public enum Options {
     };
     
     private String name;
+
+    private int index;
     
-    private Options(String name) {
+    private Options(String name, int index) {
+
         this.name = name;
+        
+        this.index = index;
+
     }
 
+    /** Returns the name of the Option
+     * @author foxler2010
+     * @return The name of the Option
+     * @since v1.0
+     * @see Option
+     */
     public String getName() {
+
         return name;
+
     }
     
+    /** Sets the name of the Option
+     * @author foxler2010
+     * @param name The new name of the Option
+     * @since v1.0
+     * @see Option
+     */
     public void setName(String name) {
+
         this.name = name;
+
+    }
+
+    /** Returns the index of the Option
+     * @author foxler2010
+     * @return The index of the Option
+     * @since v1.0
+     * @see Option
+     */
+    public int getIndex() {
+
+        return index;
+
+    }
+
+    /** Sets the index of the Option
+     * @author foxler2010
+     * @param index The new index of the Option
+     * @since v1.0
+     * @see Option
+     */
+    public void setIndex(int index) {
+
+        this.index = index;
+
     }
     
     /**
@@ -499,7 +445,7 @@ public enum Options {
      * This default message will never be displayed in the base game, and well-put-together mods should contain an opCode()
      * for every value in Option. If you (the player) are using mods, please consult with the mod's creator for support if you
      * see the default message. It would also wise to examine the code inside the Option enum, as it contains some very important functions.
-     * Mod makers, please see the modding documentation at https://drewssite.top/jump-the-volcano/mods
+     * Mod makers, please see the modding documentation at https://docs.jump-the-volcano.drewssite.top
      * @author foxler2010
      * @since v1.0
      * @see Options

@@ -98,19 +98,7 @@ public class Main {
 			//this loop displays the options
 			for (int i = 0; i < availableOptions.size(); i++) {
 				
-				//print the option to the screen. This code figures out whether the option gets the (NEW!) tag or not, so I don't have to create duplicate options like I used to.
-				//I don't like having to use all the different methods, so I will be switcing to an even more flexible system later on.
-				int currentOptionVisits;
-				switch (availableOptions.get(i)) {
-					case JUMP_THE_VOLCANO: currentOptionVisits = Data.player.getNumOfVolcanoVisits(); break;
-					case DUMPSTER_DIVE: currentOptionVisits = Data.player.getNumOfDumpsterVisits(); break;
-					case SHOP: currentOptionVisits = Data.player.getNumOfShopVisits(); break;
-					case ARENA: currentOptionVisits = Data.player.getNumOfArenaVisits(); break;
-					case PET_STORE: currentOptionVisits = Data.player.getNumOfPetStoreVisits(); break;
-					case EAT_FOOD: currentOptionVisits = Data.player.getNumOfFoodsEaten(); break;
-					case QUIT: currentOptionVisits = Data.player.getNumOfQuittings(); break;
-					default: currentOptionVisits = 0;
-				}
+				int currentOptionVisits = Data.player.getVisits(availableOptions.get(i).getIndex());
 
 				if (Data.saveTurns == 0) { //don't put the (NEW!) tag on anything on the first turn.
 

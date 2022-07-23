@@ -1,5 +1,6 @@
 package top.drewssite.volcano.data;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -276,6 +277,18 @@ public class Data {
 		 */
 	}
 
+	private static ArrayList<Integer> visits = new ArrayList<Integer>();
+
+	static {
+
+		for (int i = 0; i < Options.values().length; i++) {
+
+			visits.add(0);
+
+		}
+
+	}
+
 	/**
 	 * This is the player object, where all the player data is stored.
 	 * @author foxler2010
@@ -283,7 +296,7 @@ public class Data {
 	 * @see Player
 	 * @see Data
 	 */
-	public static Player player = new Player("Player", 10, 0, 0, Data.startingInventory);
+	public static Player player = new Player("Player", 10, 0, 0, Data.startingInventory, Data.visits);
 	/**
 	 * The number of turns the player has taken in total throughout the whole save. Does not reset after the player dies.
 	 * @author foxler2010
@@ -398,5 +411,9 @@ public class Data {
 	public static final Liquid water = new Liquid("Water", 0, 0, 10, true);
 
 	public static final Liquid budLight = new Liquid("Bud Light", 10, 40, 3, true);
+
+	//This is gonna be where the ItemDataReader is initialized for now
+	//I will change it in the future.
+	public static ItemDataReader reader = ItemDataReader.newInstance(Paths.get(System.getProperty("user.home"), "Documents", "code", "jump-the-volcano", "assets", "defaultData", "defaultItems.xml"));
 	
 }

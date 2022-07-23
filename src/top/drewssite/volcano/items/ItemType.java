@@ -2,6 +2,9 @@ package top.drewssite.volcano.items;
 
 import java.util.ArrayList;
 
+import top.drewssite.volcano.data.Data;
+import top.drewssite.volcano.data.ItemNotFoundException;
+
 /** This enum's job is to help identify Items. 
  * Every Item has one of these enums as a property,
  * and usually the enum is hardcoded to a certain value using the subclass' constructor.
@@ -117,17 +120,66 @@ public enum ItemType {
 		}
 
 	},
-	BOTTLE("Bottle", 5), //added
-	LIQUID("Liquid", 6),
-	KIT("Kit", 7),
-	WEAPON("Weapon", 8),
-	TROPHY("Trophy", 9), //added
-	OTHER("Other", 10, "name") {
+	BOTTLE("Bottle", 5, "name", "price", "fullness", "contents") {
+
+		@Override
+		public Item construct(ArrayList<String> args) throws ConstructorNotDefinedException, ItemNotFoundException {
+
+			double price = Double.parseDouble(args.get(1));
+
+			if (args.size() == 4) {
+
+				int fullness = Integer.parseInt(args.get(2));
+	
+				Liquid contents = (Liquid) Data.reader.getItem(args.get(3));
+
+				return new Bottle(args.get(0), price, fullness, contents);
+
+			}
+
+			return new Bottle(args.get(0), price);
+
+		}
+
+	},
+	LIQUID("Liquid", 6, "name", "price", "energy", "hydration", "isBottleable") {
 
 		@Override
 		public Item construct(ArrayList<String> args) {
 
-			return new Other(args.get(0));
+			double price = Double.parseDouble(args.get(1));
+
+			int energy = Integer.parseInt(args.get(2));
+
+			int hydration = Integer.parseInt(args.get(3));
+
+			boolean isBottleable = Boolean.parseBoolean(args.get(4));
+
+			return new Liquid(args.get(0), price, energy, hydration, isBottleable);
+
+		}
+
+	},
+	// KIT("Kit", 7), //not yet implemented
+	// WEAPON("Weapon", 8), //not yet implemented
+	TROPHY("Trophy", 9, "name", "price") {
+
+		@Override
+		public Item construct(ArrayList<String> args) {
+
+			double price = Double.parseDouble(args.get(1));
+
+			return new Junk(args.get(0), price);
+
+		}
+
+	}, //added
+	MISCELLANEOUS("Other", 10, "name") {
+
+		@Override
+		public Item construct(ArrayList<String> args) {
+
+			return new Miscellaneous(args.get(0));
 
 		}
 
@@ -186,10 +238,11 @@ public enum ItemType {
 	 * The order is specified in the getArgs() method.
 	 * @author foxler2010
 	 * @throws ConstructorNotDefinedException
+	 * @throws ItemNotFoundException
 	 * @since v1.0
 	 * @see ItemType
 	 */
-	public Item construct(ArrayList<String> args) throws ConstructorNotDefinedException {
+	public Item construct(ArrayList<String> args) throws ConstructorNotDefinedException, ItemNotFoundException {
 
 		System.out.println("ERROR: The " + this.getName() + " item type does not have a construct() method defined in ItemType!");
 		
