@@ -9,7 +9,9 @@ package top.drewssite.volcano.items;
  * @see Junk
  * @see Item
  */
-public class Liquid extends Food {
+public class Liquid extends Priceable {
+
+    private int energy;
 
     /**
      * A liquid may not be bottled unless this is true.
@@ -26,6 +28,14 @@ public class Liquid extends Food {
      * @see Liquid
      */
     private int hydration;
+
+    public int getEnergy() {
+		return energy;
+	}
+
+    public void setEnergy(int energy) {
+		this.energy = energy;
+	}
 
     /**
      * Returns the bottleability of the liquid.
@@ -81,7 +91,9 @@ public class Liquid extends Food {
      */
     public Liquid(String name, double price, int energy, int hydration, boolean isBottleable) {
 
-        super(name, price, energy, false);
+        super(name, ItemType.LIQUID, price, false);
+
+        this.energy = energy;
 
         this.isBottleable = isBottleable;
 
