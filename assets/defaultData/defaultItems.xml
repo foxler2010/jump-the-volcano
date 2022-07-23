@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+    <item id="oldCanOfBeans">
+        <type>3</type>
+        <name>Old Can of Beans</name>
+        <price>.05</price>
+    </item>
+    <item id="moldySock">
+        <type>3</type>
+        <name>Moldy Sock</name>
+        <price>.05</price>
+    </item>
+    <item id="brokenMagnet">
+        <type>3</type>
+        <name>Broken Magnet</name>
+        <price>.10</price>
+    </item>
+    <item id="poopSock">
+        <type>3</type>
+        <name>Poop Sock</name>
+        <price>0</price>
+    </item>
+    <item id="coolTrophy">
+        <type>8</type>
+        <name>Cool Trophy</name>
+        <price>100</price>
+    </item>
+    <item id="dirtySodaBottle">
+        <type>5</type>
+        <name>Dirty Soda Bottle</name>
+        <price>.05</price>
+        <fullness>0</fullness>
+        <contents>null</contents>
+    </item>
+    <item id="freshBudLight">
+        <type>5</type>
+        <name>Fresh Bud Light</name>
+        <price>10</price>
+        <fullness>10</fullness>
+        <contents>budLight</contents>
+    </item>
+    <item id="veryDietSoda">
+        <type>4</type>
+        <name>Very Diet Soda</name>
+        <price>5.0</price>
+        <energy>5</energy>
+        <cookable>false</cookable>
+    </item>
+    <item id="grannySmithApple">
+        <type>4</type>
+        <name>Granny Smith Apple</name>
+        <price>1.0</price>
+        <energy>10</energy>
+        <cookable>false</cookable>
+    </item>
+    <item id="honeycrispApple">
+        <type>4</type>
+        <name>Honeycrisp Apple</name>
+        <price>2.0</price>
+        <energy>25</energy>
+        <cookable>false</cookable>
+    </item>
+    <item id="sweetPotatoes">
+        <type>4</type>
+        <name>Sweet Potatoes</name>
+        <price>5.0</price>
+        <energy>50</energy>
+        <cookable>true</cookable>
+    </item>
+    <item id="weed">
+        <type>2</type>
+        <name>The Weed That Keeps Popping Up In Your Garden</name>
+        <strength>1</strength>
+    </item>
+    <item id="slime">
+        <type>2</type>
+        <name>Slime</name>
+        <strength>3</strength>
+    </item>
+    <item id="jupiterThePlanet">
+        <type>2</type>
+        <name>Jupiter, the planet</name>
+        <strength>1000</strength>
+    </item>
+    <item id="zeus">
+        <type>2</type>
+        <name>Zeus, God of Lightning</name>
+        <strength>9999</strength>
+    </item>
+    <item id="lightbulb">
+        <type>2</type>
+        <name>Lightbulb</name>
+        <strength>1</strength>
+    </item>
+    <item id="sharpGlass">
+        <type>2</type>
+        <name>Sharp Glass</name>
+        <strength>2</strength>
+    </item>
+    <item id="dog">
+        <type>1</type>
+        <name>Dog</name>
+        <strength>10</strength>
+    </item>
+    <item id="cat">
+        <type>1</type>
+        <name>Cat</name>
+        <strength>10</strength>
+    </item>
+    <item id="axolotl">
+        <type>1</type>
+        <name>Axolotl</name>
+        <strength>20</strength>
+    </item>
+    <item id="rhino">
+        <type>1</type>
+        <name>Rhino</name>
+        <strength>150</strength>
+    </item>
+    <item id="neilArmstrong">
+        <type>1</type>
+        <name>Neil Armstrong</name>
+        <strength>30</strength>
+    </item>
+    <item id="gordonRamseyPlushToy">
+        <type>1</type>
+        <name>Gordon Ramsey Plush Toy</name>
+        <strength>0</strength>
+    </item>
+    <item id="daBaby">
+        <type>1</type>
+        <name>DaBaby</name>
+        <strength>10000000</strength>
+    </item>
+    <item id="water">
+        <type>6</type>
+        <name>Water</name>
+        <price>0</price>
+        <energy>0</energy>
+        <hydration>10</hydration>
+        <isBottleable>true</isBottleable>
+    </item>
+    <item id="budLight">
+        <type>6</type>
+        <name>Bud Light</name>
+        <price>10</price>
+        <energy>40</energy>
+        <hydration>3</hydration>
+        <isBottleable>true</isBottleable>
+    </item>
+</items>
