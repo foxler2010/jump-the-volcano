@@ -3,7 +3,7 @@ package top.drewssite.volcano.items;
 /**
  * The Junk class is the "default" subclass of Priceable.
  * It does not add anything new, unlike the other subclasses of Priceable.
- * These items are not supposed to be worth much, andan important characteristic of them is that
+ * These items are not supposed to be worth much, and an important characteristic of them is that
  * you can find them when dumpster diving.
  * @author foxler2010
  * @since v1.0
