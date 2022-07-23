@@ -29,10 +29,20 @@ public class Liquid extends Priceable {
      */
     private int hydration;
 
+    /** Gets the energy provided by the Liquid
+     * @author foxler2010
+     * @since v1.0
+     * @see Liquid
+     */
     public int getEnergy() {
 		return energy;
 	}
 
+    /** Sets the energy provided by the Liquid
+     * @author foxler2010
+     * @since v1.0
+     * @see Liquid
+    */
     public void setEnergy(int energy) {
 		this.energy = energy;
 	}

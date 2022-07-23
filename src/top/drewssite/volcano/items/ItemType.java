@@ -2,8 +2,47 @@ package top.drewssite.volcano.items;
 
 import java.util.ArrayList;
 
-//this is one way to find out what an item 'is'.
-//combined with the inheritance structure of items, categorization should be very easy
+/** This enum's job is to help identify Items. 
+ * Every Item has one of these enums as a property,
+ * and usually the enum is hardcoded to a certain value using the subclass' constructor.
+ * For example, in the constructor for Pets, the super() call has ItemType.PET listed as an argument.
+ * This makes all Pets have the same ItemType. The enum itself has a few properties of its own.
+ * Here is a description of each:
+ * <ul>
+ * <li>
+ * <p>
+ * Name: This is the name of the enum, in an easy-to-read format that can be displayed to players.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Index: This is a number which is unique to every enum value. In the game's XML data files, this number is used to identify what type an item is.
+ * It's very important that the item data, enum value, and class file all match up or else some bad things will happen.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Args: This is a String vararg, so in the constructor call for the enum value, you can put in any number of strings after the index and they will all be sent to the constructor as an arrayof Strings.
+ * The intended purpose of this list is to store the arguments needed to create an Item of that type.
+ * In the class file for a given type, the constructor takes in a unique set of arguments to build an Item.
+ * These arguments MUST be in order in the enum value or the XML parser will not put the Item's properties in the right order and the constructor will not work.
+ * This concept of putting the arguments in order in the enum is explained in much more detail in the mod developer documentation.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The construct() method: This method is extremely important as it allows for the XML parser to create new Items without needing to store the data about every type.
+ * The default version of this method throws an exception since the only reason it would get called is if the enum value does not have its own version of the method, which it needs to.
+ * The override versions of the method take an ArrayList<String> containing the Item's unique arguments, and unpack it/cast it into the correct data types that the constructor expects.
+ * Then the data, now in the right format, travels into the constructor where it is constructed into an Item, which is returned.
+ * The XML parser recieves this newly minted Item and returns it, completing its task.
+ * Like the args list and index, this method is explained in more detail and in an easier to understand way in the mod developer documentation, found on my website (https://docs.jump-the-volcano.drewssite.top)
+ * </ul>
+ * 
+ * @author foxler2010
+ * @since v1.0
+ * @see Item
+ */
 public enum ItemType {
 
 	PLAYER("Player", 0),

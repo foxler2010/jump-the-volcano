@@ -6,6 +6,7 @@ package top.drewssite.volcano.items;
  * attributes required to store Liquids.
  * @author foxler2010
  * @since v1.0
+ * @see Priceable
  * @see Junk
  */
 public class Bottle extends Priceable {
@@ -59,7 +60,7 @@ public class Bottle extends Priceable {
      * @return The fullness of the Bottle
      * @since v1.0
      * @see Botte
-     * @Priceable
+     * @see Priceable
      */
     public int getFullness() {
         return fullness;
