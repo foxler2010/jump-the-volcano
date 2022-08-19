@@ -6,7 +6,7 @@ import top.drewssite.volcano.items.ItemType;
  * This exception is thrown when you try to add an item to an inventory, but the max number of items for that type has been reached and no more can be added.
  * @author foxler2010
  * @since v1.0
- * @see InventoryV3
+ * @see Inventory
 */
 public class InventorySublistFullException extends Exception {
 
@@ -17,7 +17,7 @@ public class InventorySublistFullException extends Exception {
      * Constructs a new InventorySublistFullException instance.
      * @author foxler2010
      * @since v1.0
-     * @see InventoryV3
+     * @see Inventory
      */
     public InventorySublistFullException(ItemType type, int maxAmount) {
         

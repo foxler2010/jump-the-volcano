@@ -6,7 +6,7 @@ import top.drewssite.volcano.items.Item;
  * This exception is thrown when you try to add an item to an inventory, but the max number of that item has been reached and no more can be added.
  * @author foxler2010
  * @since v1.0
- * @see InventoryV3
+ * @see Inventory
 */
 public class InventoryItemLimitReachedException extends Exception {
 
@@ -17,7 +17,7 @@ public class InventoryItemLimitReachedException extends Exception {
      * Constructs a new InventoryItemLimitReachedException instance.
      * @author foxler2010
      * @since v1.0
-     * @see InventoryV3
+     * @see Inventory
      */
     public InventoryItemLimitReachedException(Item item, int maxAmount) {
         
