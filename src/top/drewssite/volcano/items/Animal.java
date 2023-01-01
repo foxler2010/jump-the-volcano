@@ -1,7 +1,7 @@
 package top.drewssite.volcano.items;
 
 import top.drewssite.volcano.data.Data;
-import top.drewssite.volcano.inventory.InventoryV3;
+import top.drewssite.volcano.inventory.Inventory;
 
 /** Your basic living thing.
  * @author foxler2010
@@ -31,7 +31,7 @@ public abstract class Animal extends Item {
 	 * @see Animal
 	 */
 	
-	private InventoryV3 inventory;
+	private Inventory inventory;
 	
 
 	
@@ -84,7 +84,7 @@ public abstract class Animal extends Item {
 	}
 	
 	//CONSTRUCTOR takes in name, price, and type
-	public Animal(String name, ItemType type, int strength, boolean important, InventoryV3 inventoryV3) {
+	public Animal(String name, ItemType type, int strength, boolean important, Inventory inventoryV3) {
 		
 		super(name, type, important);
 		
@@ -125,7 +125,7 @@ public abstract class Animal extends Item {
 	 * @since v1.0
 	 * @see Animal
 	 */
-	public InventoryV3 getInventory() {
+	public Inventory getInventory() {
 
 		return inventory;
 

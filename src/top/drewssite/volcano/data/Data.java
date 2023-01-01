@@ -9,7 +9,7 @@ import java.util.Scanner;
 import top.drewssite.volcano.core.Main;
 import top.drewssite.volcano.core.Options;
 import top.drewssite.volcano.inventory.Inventory;
-import top.drewssite.volcano.inventory.InventoryV3;
+import top.drewssite.volcano.inventory.Inventory;
 import top.drewssite.volcano.items.Bottle;
 import top.drewssite.volcano.items.Food;
 import top.drewssite.volcano.items.Item;
@@ -263,7 +263,7 @@ public class Data {
 	 * @see Player
 	 * @see Data
 	 */
-	public static InventoryV3 startingInventory = new InventoryV3(-1, new ArrayList<Item>(), new ArrayList<Integer>(), new ArrayList<ItemType>(), new ArrayList<Integer>());
+	public static Inventory startingInventory = new Inventory(-1, new ArrayList<Item>(), new ArrayList<Integer>(), new ArrayList<ItemType>(), new ArrayList<Integer>());
 	
 	/*
 	 * Here is where you would add items into startingInventory.

@@ -3,7 +3,7 @@ package top.drewssite.volcano.items;
 import java.util.ArrayList;
 
 import top.drewssite.volcano.data.Data;
-import top.drewssite.volcano.inventory.InventoryV3;
+import top.drewssite.volcano.inventory.Inventory;
 
 /**
  *	It's YOU!
@@ -52,7 +52,7 @@ public final class Player extends Animal {
 	 * @param startingInventory	This is what the player's inventory will contain when they start the game.
 	 * @param visits A list containing the numbers of visits the player has ade to different Options, ordred by Option index.
 	 */
-	public Player(String name, int strength, int level, double money, InventoryV3 startingInventory, ArrayList<Integer> visits) {
+	public Player(String name, int strength, int level, double money, Inventory startingInventory, ArrayList<Integer> visits) {
 		super(name, ItemType.PLAYER, strength, false, startingInventory);
 		this.level = level;
 		this.money = money;
