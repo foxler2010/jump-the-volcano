@@ -414,6 +414,6 @@ public class Data {
 
 	//This is gonna be where the ItemDataReader is initialized for now
 	//I will change it in the future.
-	public static ItemDataReader reader = ItemDataReader.newInstance(Paths.get(System.getProperty("user.home"), "Documents", "code", "jump-the-volcano", "assets", "defaultData", "defaultItems.xml"));
+	public static DataReader reader = DataReader.newInstance(Paths.get(System.getProperty("user.home"), "Documents", "code", "jump-the-volcano", "assets", "defaultData", "defaultItems.xml"));
 	
 }

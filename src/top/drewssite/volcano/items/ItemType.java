@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import top.drewssite.volcano.data.Data;
 import top.drewssite.volcano.data.ItemNotFoundException;
+import top.drewssite.volcano.inventory.InventoryV3;
 
 /** This enum's job is to help identify Items. 
  * Every Item has one of these enums as a property,
@@ -48,7 +49,22 @@ import top.drewssite.volcano.data.ItemNotFoundException;
  */
 public enum ItemType {
 
-	PLAYER("Player", 0),
+	PLAYER("Player", 0, "name", "strength", "level", "money", "startingInventory", "visits") {
+
+		@Override
+		public Item construct(ArrayList<String> args) {
+
+			int strength = Integer.parseInt(args.get(1));
+
+			int level = Integer.parseInt(args.get(2));
+
+			double money = Double.parseDouble(args.get(3));
+
+			InventoryV3 inventory = Data.reader.getProperty("startingInventory");
+
+		}
+
+	},
 	PET("Pet", 1, "name", "strength") {
 
 		@Override
@@ -160,8 +176,8 @@ public enum ItemType {
 		}
 
 	},
-	// KIT("Kit", 7), //not yet implemented
-	// WEAPON("Weapon", 8), //not yet implemented
+	KIT("Kit", 7), //not yet implemented
+	WEAPON("Weapon", 8), //not yet implemented
 	TROPHY("Trophy", 9, "name", "price") {
 
 		@Override

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xml>
-    <config>
-        <scanner>
+    <properties>
+        <property id="scanner">
             <input>System.in</input>
-        </scanner>
-        <startingInventory>
+        </property>
+        <property id="startingInventoryz">
             <contents>
                 <item>oldCanOfBeans</item>
             </contents>
-        </startingInventory>
+        </property>
         <player>
             <name>Player</name>
             <strength>10</strength>
@@ -21,5 +20,4 @@
         <dataFiles>
             <file>defaultItems.xml</file>
         </dataFiles>
-    </config>
-</xml>
+    </properties>

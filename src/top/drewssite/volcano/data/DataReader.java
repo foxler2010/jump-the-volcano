@@ -17,26 +17,14 @@ import top.drewssite.volcano.items.ConstructorNotDefinedException;
 import top.drewssite.volcano.items.Item;
 import top.drewssite.volcano.items.ItemType;
 
-public class ItemDataReader {
+public class DataReader {
 
-    private Document document;
-    private NodeList items;
+    private NodeList properties;
+    private ArrayList<NodeList> items;
 
-    /** Returns a new instance of ItemDataReader.
-     * @author foxler2010
-     * @param dataFile The XML file that the ItemDataReader will access.
-     * @return A new instance of ItemDataReader
-     * @since v1.0
-     * @see DataReader
-     */
-    public static ItemDataReader newInstance(Path path) {
+    public DataReader(Path gameConfigFile, Path... itemDocPaths) {
 
-        return new ItemDataReader(path);
-
-    }
-
-    private ItemDataReader(Path path) {
-
+        //create XML parser things
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
         DocumentBuilder builder = null;
@@ -52,23 +40,54 @@ public class ItemDataReader {
 
         }
 
+        //parse the game config
+        Document gameConfigDocument;
+
         try {
 
-            this.document = builder.parse(path.toFile());
+            gameConfigDocument = builder.parse(gameConfigFile.toFile());
 
         } catch (IOException e) {
             
-            System.err.println("ERROR: There was an error accessing the XML configuration document.");
+            System.err.println("ERROR: There was an error accessing the XML configuration document at " + gameConfigFile.toString() + ".");
             e.printStackTrace();
 
         } catch (SAXException e) {
 
-            System.err.println("ERROR: There was an error parsing the XML configuration document");
+            System.err.println("ERROR: There was an error parsing the XML configuration document at " + gameConfigFile.toString() + ".");
             e.printStackTrace();
 
         }
 
-        this.items = document.getElementsByTagName("item");
+        this.properties = gameConfigDocument.getElementsByTagName("property");
+
+        ArrayList<Document> itemDocs = new ArrayList<Document>();
+
+        for (int i = 0; i < itemDocPaths.length; i++) {
+
+            try {
+
+                itemDocs.add(builder.parse(itemDocPaths[i].toFile()));
+
+            } catch (IOException e) {
+
+                System.err.println("ERROR: There was an error accessing the XML configuration document at " + itemDocPaths[i].toString() + ".");
+                e.printStackTrace();
+
+            } catch (SAXException e) {
+
+                System.err.println("ERROR: There was an error parsing the XML configuration document at " + itemDocPaths[i].toString() + ".");
+                e.printStackTrace();
+    
+            }
+
+        }
+
+        for (int i = 0; i < itemDocs.size(); i++) {
+
+            itemDocs
+
+        }
 
     }
 
